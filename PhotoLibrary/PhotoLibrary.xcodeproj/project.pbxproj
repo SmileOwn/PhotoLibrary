@@ -16,6 +16,10 @@
 		BD41C8D71FBD402E00054448 /* PhotoLibraryUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41C8D61FBD402E00054448 /* PhotoLibraryUITests.swift */; };
 		BD41C9261FBD428700054448 /* AlbumController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41C9241FBD428700054448 /* AlbumController.swift */; };
 		BD41C9271FBD428700054448 /* AlbumController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD41C9251FBD428700054448 /* AlbumController.xib */; };
+		BD41C92B1FBD5FC100054448 /* AlbumCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41C9291FBD5FC100054448 /* AlbumCollectionCell.swift */; };
+		BD41C92C1FBD5FC100054448 /* AlbumCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD41C92A1FBD5FC100054448 /* AlbumCollectionCell.xib */; };
+		BD41C92F1FBD611100054448 /* Adapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41C92E1FBD611100054448 /* Adapter.swift */; };
+		BD41C9321FBD673400054448 /* AlbumResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41C9311FBD673400054448 /* AlbumResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +55,10 @@
 		BD41C8D81FBD402E00054448 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BD41C9241FBD428700054448 /* AlbumController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumController.swift; sourceTree = "<group>"; };
 		BD41C9251FBD428700054448 /* AlbumController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumController.xib; sourceTree = "<group>"; };
+		BD41C9291FBD5FC100054448 /* AlbumCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumCollectionCell.swift; sourceTree = "<group>"; };
+		BD41C92A1FBD5FC100054448 /* AlbumCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumCollectionCell.xib; sourceTree = "<group>"; };
+		BD41C92E1FBD611100054448 /* Adapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adapter.swift; sourceTree = "<group>"; };
+		BD41C9311FBD673400054448 /* AlbumResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,10 +141,39 @@
 		BD41C9231FBD424C00054448 /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				BD41C9301FBD670000054448 /* AlbumFetchResult */,
+				BD41C92D1FBD610400054448 /* Adapter */,
+				BD41C9281FBD5FA900054448 /* Cell */,
 				BD41C9241FBD428700054448 /* AlbumController.swift */,
 				BD41C9251FBD428700054448 /* AlbumController.xib */,
 			);
 			path = Browse;
+			sourceTree = "<group>";
+		};
+		BD41C9281FBD5FA900054448 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BD41C9291FBD5FC100054448 /* AlbumCollectionCell.swift */,
+				BD41C92A1FBD5FC100054448 /* AlbumCollectionCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		BD41C92D1FBD610400054448 /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				BD41C92E1FBD611100054448 /* Adapter.swift */,
+			);
+			name = Adapter;
+			path = PhotoLibrary/Adapter;
+			sourceTree = SOURCE_ROOT;
+		};
+		BD41C9301FBD670000054448 /* AlbumFetchResult */ = {
+			isa = PBXGroup;
+			children = (
+				BD41C9311FBD673400054448 /* AlbumResult.swift */,
+			);
+			path = AlbumFetchResult;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -249,6 +286,7 @@
 				BD41C8C11FBD402E00054448 /* LaunchScreen.storyboard in Resources */,
 				BD41C9271FBD428700054448 /* AlbumController.xib in Resources */,
 				BD41C8BE1FBD402E00054448 /* Assets.xcassets in Resources */,
+				BD41C92C1FBD5FC100054448 /* AlbumCollectionCell.xib in Resources */,
 				BD41C8BC1FBD402E00054448 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,7 +313,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD41C8B91FBD402E00054448 /* ViewController.swift in Sources */,
+				BD41C92B1FBD5FC100054448 /* AlbumCollectionCell.swift in Sources */,
+				BD41C9321FBD673400054448 /* AlbumResult.swift in Sources */,
 				BD41C9261FBD428700054448 /* AlbumController.swift in Sources */,
+				BD41C92F1FBD611100054448 /* Adapter.swift in Sources */,
 				BD41C8B71FBD402E00054448 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -379,7 +420,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -430,7 +471,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -445,6 +486,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S3ATYAJ48Q;
 				INFOPLIST_FILE = PhotoLibrary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiayi.cameraTest.PhotoLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -460,6 +502,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = S3ATYAJ48Q;
 				INFOPLIST_FILE = PhotoLibrary/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jiayi.cameraTest.PhotoLibrary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
