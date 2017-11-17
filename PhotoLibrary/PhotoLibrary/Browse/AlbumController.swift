@@ -10,6 +10,8 @@ import UIKit
 
 class AlbumController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    
     var flag = true
     
     //MARK:用户相册文件夹集合
@@ -27,8 +29,10 @@ class AlbumController: UIViewController {
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.current = albumList.first
         self.stup()
+        self.initNavigation()
         
     }
     
@@ -74,7 +78,7 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionCell", for: indexPath) as! AlbumCollectionCell
         cell.backgroundColor = UIColor.yellow
-        albumResult.library(index: indexPath.row, assetsFetch: current.fetchResult, thumbSize: CGSize(width: itemWidth/2, height: itemWidth/2)) { (image, asset) in
+        albumResult.library(index: indexPath.row, assetsFetch: current.fetchResult, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (image, asset) in
             
             cell.imgaeView.image  = image
             

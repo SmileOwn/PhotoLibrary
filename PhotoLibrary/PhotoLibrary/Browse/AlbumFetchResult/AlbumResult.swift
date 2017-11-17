@@ -103,7 +103,7 @@ class AlbumResult {
             result(image!,asset)
         }
         
-        
+    
     }
     
 }
