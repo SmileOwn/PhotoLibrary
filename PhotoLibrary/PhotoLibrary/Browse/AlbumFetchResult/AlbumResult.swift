@@ -12,10 +12,12 @@ import Photos
 struct FetchModel {
     var title:String = ""
     var fetchResult:PHFetchResult<PHAsset>
+    var count = 0
     
     init(title:String,fetch:PHFetchResult<PHAsset>) {
         self.title = title
         self.fetchResult = fetch
+        self.count  = fetch.count
     }
     
 }
@@ -24,8 +26,16 @@ class AlbumResult {
     
     init() {
       self.collections()
+        
+       option.isSynchronous = false
+        option.deliveryMode = .opportunistic
+        option.isNetworkAccessAllowed = false
+        option.resizeMode = .exact
+        
     }
     var fetchs:[FetchModel] = []
+    
+     var option:PHImageRequestOptions = PHImageRequestOptions()
     
     //MARK:系统智能相册
    private var smart:PHFetchResult<AnyObject>!{
@@ -40,13 +50,22 @@ class AlbumResult {
     }
  
    
+    //MARk:获取用户相册所有的相册集合
    private func collections() -> Void {
-        self.result(collection: smart)
-        self.result(collection: userCustom)
+    
+    let smarts:[FetchModel]       =  self.result(collection: smart)
+   
+    let userCustoms:[FetchModel]  =  self.result(collection: userCustom)
+    
+    self.fetchs.append(contentsOf: smarts)
+    self.fetchs.append(contentsOf: userCustoms)
+    
     }
 
-    
-    private func result(collection:PHFetchResult<AnyObject>) -> Void {
+    //MARK:遍历相册集合
+    private func result(collection:PHFetchResult<AnyObject>) -> [FetchModel]! {
+        
+        var array:[FetchModel] = []
         
         collection.enumerateObjects { (object, index, stop) in
             
@@ -61,15 +80,31 @@ class AlbumResult {
             if   assetResuable.count > 0 &&  assetObject.localizedTitle != "最近删除" {
                 
                 let fetch = FetchModel(title: assetObject.localizedTitle!, fetch: assetResuable)
-                self.fetchs.append(fetch)
+                array.append(fetch)
                 
             }
             
         }
         
+        return array
     }
     
     
+
+    
+     public  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
+        
+        let retainScale = UIScreen.main.scale
+        let size =  CGSize(width: thumbSize.width * retainScale, height: thumbSize.height * retainScale)
+        let asset = assetsFetch[index]
+        
+        PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode:PHImageContentMode.aspectFill , options: option) { (image, info) in
+            
+            result(image!,asset)
+        }
+        
+        
+    }
     
 }
 
