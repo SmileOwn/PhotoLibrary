@@ -9,6 +9,41 @@
 import Foundation
 import Photos
 
+enum MediaType:Int {
+    case  none  = 0
+    case  image = 1
+    case  video = 2
+    case audio = 3
+}
+
+struct PhotoModel {
+    var mediaType:MediaType = MediaType.none
+    var asset:PHAsset?
+    var image:UIImage?
+    
+    
+    init(asset:PHAsset,image:UIImage) {
+        self.asset = asset
+        self.image = image
+        switch asset.mediaType.rawValue {
+        case 0:
+            self.mediaType = .none
+            break
+        case 1:
+            self.mediaType = .image
+            break
+        case 2:
+            self.mediaType = .video
+            break
+        case 3:
+            self.mediaType = .audio
+        default: break
+            
+            
+    }
+ }
+}
+
 struct FetchModel {
     var title:String = ""
     var fetchResult:PHFetchResult<PHAsset>
@@ -91,8 +126,17 @@ class AlbumResult {
     
     
 
+    public  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ photoModel:PhotoModel)->()) -> Void {
+     
+        self.library(index: index, assetsFetch: assetsFetch, thumbSize: thumbSize) { (image, asset) in
+        
+            let model = PhotoModel(asset: asset, image: image)
+            
+            result(model)
+        }
+    }
     
-     public  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
+     private  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
         
         let retainScale = UIScreen.main.scale
         let size =  CGSize(width: thumbSize.width * retainScale, height: thumbSize.height * retainScale)

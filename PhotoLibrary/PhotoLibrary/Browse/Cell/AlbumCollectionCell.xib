@@ -22,20 +22,42 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UwN-kB-8CU">
                         <rect key="frame" x="0.0" y="0.0" width="267" height="186"/>
                     </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="videoPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="BhG-Z0-eFS">
+                        <rect key="frame" x="10" y="164" width="17" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="17" id="a8X-cg-5Bk"/>
+                            <constraint firstAttribute="height" constant="17" id="cM1-To-vwy"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="02:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7r0-Qc-OQj">
+                        <rect key="frame" x="223.5" y="166" width="33.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="BhG-Z0-eFS" secondAttribute="bottom" constant="5" id="EXc-Qf-aOK"/>
+                <constraint firstItem="7r0-Qc-OQj" firstAttribute="centerY" secondItem="BhG-Z0-eFS" secondAttribute="centerY" id="M86-my-8XE"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="7r0-Qc-OQj" secondAttribute="trailing" constant="10" id="UUk-2l-JK5"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="UwN-kB-8CU" secondAttribute="bottom" id="Ubf-mf-3X0"/>
                 <constraint firstItem="UwN-kB-8CU" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="hBb-lK-Nfy"/>
                 <constraint firstItem="UwN-kB-8CU" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="hzk-Xf-t17"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="UwN-kB-8CU" secondAttribute="trailing" id="ik1-1X-l1w"/>
+                <constraint firstItem="BhG-Z0-eFS" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="10" id="voK-7N-wkj"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="267" height="186"/>
             <connections>
                 <outlet property="imgaeView" destination="UwN-kB-8CU" id="X7B-2S-hBY"/>
+                <outlet property="videoImageView" destination="BhG-Z0-eFS" id="qoh-Lr-KEc"/>
+                <outlet property="videoLabel" destination="7r0-Qc-OQj" id="7ex-q0-g8W"/>
             </connections>
             <point key="canvasLocation" x="142.5" y="122"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="videoPhoto" width="16" height="16"/>
+    </resources>
 </document>

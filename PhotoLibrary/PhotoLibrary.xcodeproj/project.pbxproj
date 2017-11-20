@@ -25,6 +25,7 @@
 		BD41C93B1FBEBD1200054448 /* photo_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C9371FBEBD1200054448 /* photo_up@2x.png */; };
 		BD41C93C1FBEBD1200054448 /* photo_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C9381FBEBD1200054448 /* photo_down@3x.png */; };
 		BD41C93D1FBEBD1200054448 /* photo_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C9391FBEBD1200054448 /* photo_down@2x.png */; };
+		BD41C93F1FBEC20D00054448 /* videoPhoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		BD41C9371FBEBD1200054448 /* photo_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_up@2x.png"; sourceTree = "<group>"; };
 		BD41C9381FBEBD1200054448 /* photo_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_down@3x.png"; sourceTree = "<group>"; };
 		BD41C9391FBEBD1200054448 /* photo_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_down@2x.png"; sourceTree = "<group>"; };
+		BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoPhoto@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +193,7 @@
 		BD41C9351FBEBD1200054448 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */,
 				BD41C9361FBEBD1200054448 /* photo_up@3x.png */,
 				BD41C9371FBEBD1200054448 /* photo_up@2x.png */,
 				BD41C9381FBEBD1200054448 /* photo_down@3x.png */,
@@ -307,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD41C93C1FBEBD1200054448 /* photo_down@3x.png in Resources */,
+				BD41C93F1FBEC20D00054448 /* videoPhoto@2x.png in Resources */,
 				BD41C8C11FBD402E00054448 /* LaunchScreen.storyboard in Resources */,
 				BD41C93B1FBEBD1200054448 /* photo_up@2x.png in Resources */,
 				BD41C93A1FBEBD1200054448 /* photo_up@3x.png in Resources */,

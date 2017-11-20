@@ -78,11 +78,10 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionCell", for: indexPath) as! AlbumCollectionCell
         cell.backgroundColor = UIColor.yellow
-        albumResult.library(index: indexPath.row, assetsFetch: current.fetchResult, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (image, asset) in
-            
-            cell.imgaeView.image  = image
-            
+        albumResult.library(index: indexPath.row, assetsFetch: current.fetchResult, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (model) in
+            cell.photo = model
         }
+     
         return cell
     }
     
