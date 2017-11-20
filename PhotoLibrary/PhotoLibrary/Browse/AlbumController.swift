@@ -12,16 +12,21 @@ class AlbumController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     
+    //用于解决xib中colllectionView scrollToItem 无效问题
     var flag = true
     
-    //MARK:用户相册文件夹集合
+    //MARK:相册处理类
     var albumResult:AlbumResult = AlbumResult()
     
+    //MARK:用户相册文件夹集合
     var albumList:[FetchModel] {
         return albumResult.fetchs
     }
     
+    //MARK:当前用户相册
     var current:FetchModel!
+    
+    //mark:选中的图片 或者 视频
     var selecteds:[PhotoModel] = []
     
     
@@ -37,6 +42,7 @@ class AlbumController: UIViewController {
         self.initNavigation()
         
     }
+    //MARK:更新相册来源
     func reload() -> Void {
         self.current = albumList.first
         
@@ -44,8 +50,6 @@ class AlbumController: UIViewController {
     
     //MARK:初始化UI
     func stup() -> Void {
-        
-        
         self.collectionView.register(UINib(nibName: "AlbumCollectionCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCollectionCell")
         layout.minimumLineSpacing = 4
         layout.minimumInteritemSpacing = 4
@@ -59,6 +63,7 @@ class AlbumController: UIViewController {
   
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        //MARK:第一次加载collectionView 使其滚动到最后
         if flag {
             collectionView.scrollToItem(at: IndexPath(row:self.current.fetchResult.count-1, section: 0), at: .top, animated: false)
             flag = false
@@ -77,7 +82,6 @@ extension AlbumController:AlbumCollectionCellDelegate{
     
     func selected(button: UIButton, photo: PhotoModel) {
     
-  
         if button.isSelected {
             selecteds.append(photo)
         }else{

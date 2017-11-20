@@ -66,7 +66,7 @@ class AlbumResult {
     init() {
       self.collections()
         
-       option.isSynchronous = false
+        option.isSynchronous = false
         option.deliveryMode = .opportunistic
         option.isNetworkAccessAllowed = false
         option.resizeMode = .exact
@@ -129,7 +129,7 @@ class AlbumResult {
     }
     
     
-
+    //MARK:获取图片数据
     public  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ photoModel:PhotoModel)->()) -> Void {
      
         self.library(index: index, assetsFetch: assetsFetch, thumbSize: thumbSize) { (image, asset) in
