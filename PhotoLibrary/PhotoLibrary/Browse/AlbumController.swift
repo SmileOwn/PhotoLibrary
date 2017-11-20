@@ -22,6 +22,8 @@ class AlbumController: UIViewController {
     }
     
     var current:FetchModel!
+    var selecteds:[PhotoModel] = []
+    
     
     let itemWidth = (UIScreen.main.bounds.size.width - 20) / 4
     
@@ -30,9 +32,13 @@ class AlbumController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.current = albumList.first
+        self.reload()
         self.stup()
         self.initNavigation()
+        
+    }
+    func reload() -> Void {
+        self.current = albumList.first
         
     }
     
@@ -67,6 +73,29 @@ class AlbumController: UIViewController {
     
 
 }
+extension AlbumController:AlbumCollectionCellDelegate{
+    
+    func selected(button: UIButton, photo: PhotoModel) {
+    
+  
+        if button.isSelected {
+            selecteds.append(photo)
+        }else{
+           
+           let index =  selecteds.index(where: { (model) -> Bool in
+                return model.index == photo.index
+            })
+           
+            if index != nil{
+                selecteds.remove(at: index!)
+            }
+            
+        }
+        
+    
+        
+    }
+}
 extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -77,9 +106,18 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionCell", for: indexPath) as! AlbumCollectionCell
-        cell.backgroundColor = UIColor.yellow
+        cell.delgate = self
         albumResult.library(index: indexPath.row, assetsFetch: current.fetchResult, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (model) in
-            cell.photo = model
+            
+            var photo = model
+            
+            let index = self.selecteds.index(where: { (photoModel) -> Bool in
+                
+                return photoModel.index == model.index
+            })
+            
+            if index != nil { photo.isSelected = true }
+            cell.photo = photo
         }
      
         return cell

@@ -20,9 +20,13 @@ struct PhotoModel {
     var mediaType:MediaType = MediaType.none
     var asset:PHAsset?
     var image:UIImage?
+    var isSelected:Bool = false
+    var index:Int = -1
     
     
-    init(asset:PHAsset,image:UIImage) {
+    
+    init(asset:PHAsset,image:UIImage,index:Int) {
+        self.index = index
         self.asset = asset
         self.image = image
         switch asset.mediaType.rawValue {
@@ -130,7 +134,7 @@ class AlbumResult {
      
         self.library(index: index, assetsFetch: assetsFetch, thumbSize: thumbSize) { (image, asset) in
         
-            let model = PhotoModel(asset: asset, image: image)
+            let model = PhotoModel(asset: asset, image: image, index: index)
             
             result(model)
         }

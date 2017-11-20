@@ -26,6 +26,10 @@
 		BD41C93C1FBEBD1200054448 /* photo_down@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C9381FBEBD1200054448 /* photo_down@3x.png */; };
 		BD41C93D1FBEBD1200054448 /* photo_down@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C9391FBEBD1200054448 /* photo_down@2x.png */; };
 		BD41C93F1FBEC20D00054448 /* videoPhoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */; };
+		BD41F7BE1FC2C03400C3AF19 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41F7BD1FC2C03400C3AF19 /* Animation.swift */; };
+		BD41F7C01FC2C05600C3AF19 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41F7BF1FC2C05600C3AF19 /* TimeInterval.swift */; };
+		BDFF677A1FC2BB4400B43848 /* mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFF67781FC2BB4400B43848 /* mark@2x.png */; };
+		BDFF677B1FC2BB4400B43848 /* photoNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +75,10 @@
 		BD41C9381FBEBD1200054448 /* photo_down@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_down@3x.png"; sourceTree = "<group>"; };
 		BD41C9391FBEBD1200054448 /* photo_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photo_down@2x.png"; sourceTree = "<group>"; };
 		BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoPhoto@2x.png"; sourceTree = "<group>"; };
+		BD41F7BD1FC2C03400C3AF19 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
+		BD41F7BF1FC2C05600C3AF19 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		BDFF67781FC2BB4400B43848 /* mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark@2x.png"; sourceTree = "<group>"; };
+		BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoNormal@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -153,6 +161,7 @@
 		BD41C9231FBD424C00054448 /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				BD41F7BC1FC2C02600C3AF19 /* Extension */,
 				BD41C9351FBEBD1200054448 /* Resource */,
 				BD41C9301FBD670000054448 /* AlbumFetchResult */,
 				BD41C92D1FBD610400054448 /* Adapter */,
@@ -193,6 +202,8 @@
 		BD41C9351FBEBD1200054448 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BDFF67781FC2BB4400B43848 /* mark@2x.png */,
+				BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */,
 				BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */,
 				BD41C9361FBEBD1200054448 /* photo_up@3x.png */,
 				BD41C9371FBEBD1200054448 /* photo_up@2x.png */,
@@ -200,6 +211,15 @@
 				BD41C9391FBEBD1200054448 /* photo_down@2x.png */,
 			);
 			path = Resource;
+			sourceTree = "<group>";
+		};
+		BD41F7BC1FC2C02600C3AF19 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BD41F7BD1FC2C03400C3AF19 /* Animation.swift */,
+				BD41F7BF1FC2C05600C3AF19 /* TimeInterval.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,12 +332,14 @@
 				BD41C93C1FBEBD1200054448 /* photo_down@3x.png in Resources */,
 				BD41C93F1FBEC20D00054448 /* videoPhoto@2x.png in Resources */,
 				BD41C8C11FBD402E00054448 /* LaunchScreen.storyboard in Resources */,
+				BDFF677A1FC2BB4400B43848 /* mark@2x.png in Resources */,
 				BD41C93B1FBEBD1200054448 /* photo_up@2x.png in Resources */,
 				BD41C93A1FBEBD1200054448 /* photo_up@3x.png in Resources */,
 				BD41C9271FBD428700054448 /* AlbumController.xib in Resources */,
 				BD41C8BE1FBD402E00054448 /* Assets.xcassets in Resources */,
 				BD41C92C1FBD5FC100054448 /* AlbumCollectionCell.xib in Resources */,
 				BD41C93D1FBEBD1200054448 /* photo_down@2x.png in Resources */,
+				BDFF677B1FC2BB4400B43848 /* photoNormal@2x.png in Resources */,
 				BD41C8BC1FBD402E00054448 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -344,7 +366,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD41C8B91FBD402E00054448 /* ViewController.swift in Sources */,
+				BD41F7C01FC2C05600C3AF19 /* TimeInterval.swift in Sources */,
 				BD41C92B1FBD5FC100054448 /* AlbumCollectionCell.swift in Sources */,
+				BD41F7BE1FC2C03400C3AF19 /* Animation.swift in Sources */,
 				BD41C9321FBD673400054448 /* AlbumResult.swift in Sources */,
 				BD41C9261FBD428700054448 /* AlbumController.swift in Sources */,
 				BD41C92F1FBD611100054448 /* Adapter.swift in Sources */,
