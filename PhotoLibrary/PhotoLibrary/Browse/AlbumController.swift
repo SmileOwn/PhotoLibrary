@@ -53,7 +53,7 @@ class AlbumController: UIViewController {
         self.collectionView.register(UINib(nibName: "AlbumCollectionCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCollectionCell")
         layout.minimumLineSpacing = 4
         layout.minimumInteritemSpacing = 4
-        
+    
         layout.itemSize = CGSize(width: itemWidth, height: itemWidth)
         layout.sectionInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 4)
     
@@ -93,7 +93,7 @@ extension AlbumController:AlbumCollectionCellDelegate{
             if index != nil{
                 selecteds.remove(at: index!)
             }
-            
+        
         }
         
     
