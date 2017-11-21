@@ -11,6 +11,9 @@ import UIKit
 class AlbumController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var assetListView:PhotoAssetListView?
+    var titleButton:UIButton!
+    
     
     //用于解决xib中colllectionView scrollToItem 无效问题
     var flag = true
@@ -36,7 +39,7 @@ class AlbumController: UIViewController {
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.current = albumList.first
         self.reload()
         self.stup()
         self.initNavigation()
@@ -44,8 +47,9 @@ class AlbumController: UIViewController {
     }
     //MARK:更新相册来源
     func reload() -> Void {
-        self.current = albumList.first
         
+        self.collectionView.reloadData()
+        flag = true
     }
     
     //MARK:初始化UI

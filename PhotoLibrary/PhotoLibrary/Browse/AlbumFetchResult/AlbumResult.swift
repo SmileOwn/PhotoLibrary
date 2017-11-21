@@ -13,7 +13,7 @@ enum MediaType:Int {
     case  none  = 0
     case  image = 1
     case  video = 2
-    case audio = 3
+    case  audio = 3
 }
 
 struct PhotoModel {
@@ -52,6 +52,8 @@ struct FetchModel {
     var title:String = ""
     var fetchResult:PHFetchResult<PHAsset>
     var count = 0
+    var coverImage:UIImage?
+    
     
     init(title:String,fetch:PHFetchResult<PHAsset>) {
         self.title = title
@@ -63,13 +65,12 @@ struct FetchModel {
 
 class AlbumResult {
     
+    var imageManager:PHCachingImageManager = PHCachingImageManager()
+    
     init() {
-      self.collections()
+      imageManager.stopCachingImagesForAllAssets()
         
-        option.isSynchronous = false
-        option.deliveryMode = .opportunistic
-        option.isNetworkAccessAllowed = false
-        option.resizeMode = .exact
+      self.collections()
         
     }
     var fetchs:[FetchModel] = []
@@ -98,6 +99,19 @@ class AlbumResult {
     
     self.fetchs.append(contentsOf: smarts)
     self.fetchs.append(contentsOf: userCustoms)
+
+//      self.fetchs =   self.fetchs.flatMap { (fetchModel) -> FetchModel? in
+//
+//        var model = fetchModel
+//
+//         self.library(index: 0, assetsFetch: fetchModel.fetchResult, thumbSize: CGSize(width: 50.0, height: 50.0), result: { (image, asset) in
+//
+//            model.coverImage = image
+//         })
+//           return model
+//        }
+    
+    
     
     }
 
@@ -146,13 +160,27 @@ class AlbumResult {
         let size =  CGSize(width: thumbSize.width * retainScale, height: thumbSize.height * retainScale)
         let asset = assetsFetch[index]
         
-        PHImageManager.default().requestImage(for: asset, targetSize: size, contentMode:PHImageContentMode.aspectFill , options: option) { (image, info) in
+        imageManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { (image, _) in
             
             result(image!,asset)
         }
-        
+
     
     }
+    
+   static func libiray(cacheManager:PHCachingImageManager, asset:PHAsset,thumb:CGSize,result:@escaping(_ image:UIImage)->()) -> Void {
+        let retainScale = UIScreen.main.scale
+    
+        let size =  CGSize(width: thumb.width * retainScale, height: thumb.height * retainScale)
+    
+        cacheManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { (image, _) in
+            result(image!)
+            
+        }
+        
+    }
+    
+   
     
 }
 

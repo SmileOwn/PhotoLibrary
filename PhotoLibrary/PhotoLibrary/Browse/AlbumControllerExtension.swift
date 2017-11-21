@@ -7,6 +7,19 @@
 //
 
 import UIKit
+
+extension AlbumController:PhotoAssetListViewDelegate{
+    func cancle() {
+         self.titleButton.isSelected = false
+    }
+    func selected(model: FetchModel) {
+        self.current = model
+        self.titleButton.setTitle(model.title, for: .normal)
+        self.reload()
+    }
+}
+
+
 extension AlbumController{
     public func initNavigation() -> Void {
         
@@ -17,7 +30,7 @@ extension AlbumController{
     
     fileprivate func titleView() -> Void {
         
-       let  titleButton = UIButton()
+        titleButton = UIButton()
       
         titleButton.isSelected = false
         titleButton.setTitleColor(UIColor.black, for: .normal)
@@ -58,7 +71,18 @@ extension AlbumController{
     @objc func titleAction(button:UIButton) -> Void {
         button.isSelected = !button.isSelected
         
-    
+        if button.isSelected {
+            self.assetListView = PhotoAssetListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), list: self.albumList)
+            self.assetListView?.delegate = self
+            self.view.addSubview(self.assetListView!)
+        }else{
+            if self.assetListView != nil {
+                
+                self.assetListView?.cancle()
+                self.assetListView = nil
+            }
+            
+        }
         
     }
     @objc func cancleAction() -> Void {
