@@ -43,21 +43,22 @@ class AlbumController: UIViewController {
         super.viewDidLoad()
     
         self.current = albumList.first
-        self.reload()
+        
         self.stup()
+        self.reload()
         self.initNavigation()
         
     }
     //MARK:更新相册来源
     func reload() -> Void {
-        flag = true
-        self.collectionView.reloadData()
-        
+       
+        collectionView.reloadData()
+        scrollToBottom()
     }
     
     //MARK:初始化UI
     func stup() -> Void {
-        self.collectionView.register(UINib(nibName: "AlbumCollectionCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCollectionCell")
+        collectionView.register(UINib(nibName: "AlbumCollectionCell", bundle: nil), forCellWithReuseIdentifier: "AlbumCollectionCell")
         layout.minimumLineSpacing = 4
         layout.minimumInteritemSpacing = 4
     
@@ -66,18 +67,21 @@ class AlbumController: UIViewController {
     
     }
   
-    
-  
+    //MARK:滚动到相册末尾
+    func scrollToBottom() -> Void {
+          collectionView.scrollToItem(at: IndexPath(row:current.fetchResult.count-1, section: 0), at: .top, animated: false)
+    }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         //MARK:第一次加载collectionView 使其滚动到最后
         if flag {
-            collectionView.scrollToItem(at: IndexPath(row:self.current.fetchResult.count-1, section: 0), at: .top, animated: false)
+            scrollToBottom()
             flag = false
         }
         
         
     }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
       
@@ -87,26 +91,55 @@ class AlbumController: UIViewController {
 }
 extension AlbumController:AlbumCollectionCellDelegate{
     
+    //MARK:获取 photo下标
+    func index(photo:PhotoModel) -> Int? {
+        let index =  selecteds.index(where: { (model) -> Bool in
+            return model.asset?.localIdentifier == photo.asset?.localIdentifier
+        })
+        return index
+    }
+    //MARK:更新相册文件夹选中状态
+    func updateAlbumList() -> Void {
+        if selecteds.count == 0 {
+            self.current.isContains = false
+        }else{
+            
+            let fetchModel =  self.albumList.first(where: { (model) -> Bool in
+                
+                return model.title == "所有照片"
+            })
+            
+           fetchModel?.isContains = true
+        }
+        self.selecteds.forEach { (model) in
+            
+            if self.current.fetchResult.contains(model.asset!) {
+                self.current.isContains = true
+            }else{
+                self.current.isContains = false
+            }
+        }
+       
+    }
+    
     func selected(button: UIButton, photo: PhotoModel) {
         
+       
         button.isSelected = !button.isSelected
+        button.selectAnimation()
         
         if button.isSelected {
             selecteds.append(photo)
         }else{
-           
-           let index =  selecteds.index(where: { (model) -> Bool in
-                return model.index == photo.index
-            })
-           
+            let index = self.index(photo: photo)
+            
             if index != nil{
                 selecteds.remove(at: index!)
             }
         
         }
-        
-       
-       button.selectAnimation()
+       updateAlbumList()
+
         
     }
 }
@@ -121,13 +154,13 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionCell", for: indexPath) as! AlbumCollectionCell
         cell.delgate = self
-        albumResult.library(index: indexPath.row, assetsFetch: current.fetchResult, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (model) in
+        albumResult.library(index: indexPath.row, fetch: current, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (model) in
             
             var photo = model
             
             let index = self.selecteds.index(where: { (photoModel) -> Bool in
                 
-                return photoModel.index == model.index
+                return photoModel.asset?.localIdentifier == model.asset?.localIdentifier
             })
             
             if index != nil { photo.isSelected = true }

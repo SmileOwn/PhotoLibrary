@@ -73,6 +73,9 @@ extension AlbumController{
         
         
         if button.isSelected {
+          
+      
+            
             self.assetListView = PhotoAssetListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), list: self.albumList)
             self.assetListView?.delegate = self
             self.view.addSubview(self.assetListView!)

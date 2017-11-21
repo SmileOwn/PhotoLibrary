@@ -31,7 +31,7 @@ class AssetCell: UITableViewCell {
                 
                 self.titleImageView.image = image
             }
-
+            markImageView.isHidden = !newValue.isContains
         }
     }
     

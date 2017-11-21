@@ -21,15 +21,16 @@ struct PhotoModel {
     var asset:PHAsset?
     var image:UIImage?
     var isSelected:Bool = false
-    var index:Int = -1
     var titleIndex:Int = 0
+    var fetchTitle:String = ""
     
     
     
-    init(asset:PHAsset,image:UIImage,index:Int) {
-        self.index = index
+    init(asset:PHAsset,image:UIImage,fetchTitle:String) {
+    
         self.asset = asset
         self.image = image
+        self.fetchTitle = fetchTitle
         switch asset.mediaType.rawValue {
         case 0:
             self.mediaType = .none
@@ -49,12 +50,13 @@ struct PhotoModel {
  }
 }
 
-struct FetchModel {
+class FetchModel {
     var title:String = ""
     var fetchResult:PHFetchResult<PHAsset>
     var count = 0
     var coverImage:UIImage?
     
+    var isContains:Bool = false
     
     init(title:String,fetch:PHFetchResult<PHAsset>) {
         self.title = title
@@ -145,11 +147,12 @@ class AlbumResult {
     
     
     //MARK:获取图片数据
-    public  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ photoModel:PhotoModel)->()) -> Void {
+    public  func library(index:Int,fetch:FetchModel,thumbSize:CGSize,result:@escaping(_ photoModel:PhotoModel)->()) -> Void {
      
-        self.library(index: index, assetsFetch: assetsFetch, thumbSize: thumbSize) { (image, asset) in
+  
+        self.library(index: index, assetsFetch: fetch.fetchResult, thumbSize: thumbSize) { (image, asset) in
         
-            let model = PhotoModel(asset: asset, image: image, index: index)
+            let model = PhotoModel(asset: asset, image: image, fetchTitle: fetch.title)
             
             result(model)
         }
