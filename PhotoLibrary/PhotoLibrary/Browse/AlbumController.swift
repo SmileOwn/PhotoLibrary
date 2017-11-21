@@ -13,6 +13,8 @@ class AlbumController: UIViewController {
     
     var assetListView:PhotoAssetListView?
     var titleButton:UIButton!
+    //MARK:1 单选 大于1 多选
+    var maxNumber:Int = 9
     
     
     //用于解决xib中colllectionView scrollToItem 无效问题
@@ -39,6 +41,7 @@ class AlbumController: UIViewController {
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         self.current = albumList.first
         self.reload()
         self.stup()
@@ -47,9 +50,9 @@ class AlbumController: UIViewController {
     }
     //MARK:更新相册来源
     func reload() -> Void {
-        
-        self.collectionView.reloadData()
         flag = true
+        self.collectionView.reloadData()
+        
     }
     
     //MARK:初始化UI
@@ -85,7 +88,9 @@ class AlbumController: UIViewController {
 extension AlbumController:AlbumCollectionCellDelegate{
     
     func selected(button: UIButton, photo: PhotoModel) {
-    
+        
+        button.isSelected = !button.isSelected
+        
         if button.isSelected {
             selecteds.append(photo)
         }else{
@@ -100,7 +105,8 @@ extension AlbumController:AlbumCollectionCellDelegate{
         
         }
         
-    
+       
+       button.selectAnimation()
         
     }
 }

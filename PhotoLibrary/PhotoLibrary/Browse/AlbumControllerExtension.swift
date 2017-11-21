@@ -38,7 +38,7 @@ extension AlbumController{
         titleButton.titleLabel?.font = UIFont.systemFont(ofSize: 16)
         titleButton.setImage(UIImage(named: "photo_down"), for: .normal)
         titleButton.setImage(UIImage(named: "photo_up"), for: .selected)
-        titleButton.frame = CGRect(x: 0, y: 0, width: 120, height: 44)
+        titleButton.frame = CGRect(x: 0, y: 0, width: 220, height: 44)
         titleButton.addTarget(self, action: #selector(self.titleAction(button:)), for: .touchUpInside)
         titleButton.setTitle(self.current.title, for: .normal)
         self.navigationItem.titleView = titleButton
@@ -70,6 +70,7 @@ extension AlbumController{
     }
     @objc func titleAction(button:UIButton) -> Void {
         button.isSelected = !button.isSelected
+        
         
         if button.isSelected {
             self.assetListView = PhotoAssetListView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height), list: self.albumList)

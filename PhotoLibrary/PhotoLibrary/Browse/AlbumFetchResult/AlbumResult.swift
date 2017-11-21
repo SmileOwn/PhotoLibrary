@@ -22,6 +22,7 @@ struct PhotoModel {
     var image:UIImage?
     var isSelected:Bool = false
     var index:Int = -1
+    var titleIndex:Int = 0
     
     
     
@@ -159,11 +160,14 @@ class AlbumResult {
         let retainScale = UIScreen.main.scale
         let size =  CGSize(width: thumbSize.width * retainScale, height: thumbSize.height * retainScale)
         let asset = assetsFetch[index]
+       
+            self.imageManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { (image, _) in
+                
+                    result(image!,asset)
+                
+            }
         
-        imageManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { (image, _) in
-            
-            result(image!,asset)
-        }
+     
 
     
     }

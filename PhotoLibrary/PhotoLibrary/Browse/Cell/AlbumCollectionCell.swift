@@ -39,9 +39,7 @@ class AlbumCollectionCell: UICollectionViewCell {
     }
     
     @IBAction func selectButtonAction(_ sender: Any) {
-        selectButton.isSelected = !selectButton.isSelected
-        photo.isSelected = selectButton.isSelected
-        selectButton.selectAnimation()
+       
         self.delgate?.selected(button: selectButton, photo: photo)
     }
     override func awakeFromNib() {

@@ -30,6 +30,7 @@
 		BD41C93F1FBEC20D00054448 /* videoPhoto@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */; };
 		BD41F7BE1FC2C03400C3AF19 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41F7BD1FC2C03400C3AF19 /* Animation.swift */; };
 		BD41F7C01FC2C05600C3AF19 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41F7BF1FC2C05600C3AF19 /* TimeInterval.swift */; };
+		BD8CB0E81FC40516009209D2 /* photoSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD8CB0E71FC40516009209D2 /* photoSelect@2x.png */; };
 		BDFF677A1FC2BB4400B43848 /* mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFF67781FC2BB4400B43848 /* mark@2x.png */; };
 		BDFF677B1FC2BB4400B43848 /* photoNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */; };
 /* End PBXBuildFile section */
@@ -81,6 +82,7 @@
 		BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "videoPhoto@2x.png"; sourceTree = "<group>"; };
 		BD41F7BD1FC2C03400C3AF19 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		BD41F7BF1FC2C05600C3AF19 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
+		BD8CB0E71FC40516009209D2 /* photoSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoSelect@2x.png"; sourceTree = "<group>"; };
 		BDFF67781FC2BB4400B43848 /* mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark@2x.png"; sourceTree = "<group>"; };
 		BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoNormal@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -215,6 +217,7 @@
 		BD41C9351FBEBD1200054448 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				BD8CB0E71FC40516009209D2 /* photoSelect@2x.png */,
 				BDFF67781FC2BB4400B43848 /* mark@2x.png */,
 				BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */,
 				BD41C93E1FBEC20D00054448 /* videoPhoto@2x.png */,
@@ -347,6 +350,7 @@
 				BD41C93F1FBEC20D00054448 /* videoPhoto@2x.png in Resources */,
 				BD41C8C11FBD402E00054448 /* LaunchScreen.storyboard in Resources */,
 				BDFF677A1FC2BB4400B43848 /* mark@2x.png in Resources */,
+				BD8CB0E81FC40516009209D2 /* photoSelect@2x.png in Resources */,
 				BD41C93B1FBEBD1200054448 /* photo_up@2x.png in Resources */,
 				BD41C93A1FBEBD1200054448 /* photo_up@3x.png in Resources */,
 				BD41C9271FBD428700054448 /* AlbumController.xib in Resources */,
