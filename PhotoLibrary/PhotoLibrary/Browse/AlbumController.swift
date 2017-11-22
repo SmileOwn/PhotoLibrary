@@ -11,6 +11,10 @@ import UIKit
 class AlbumController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
+    @IBOutlet weak var finishButton: UIButton!
+    
+    @IBOutlet weak var previewButton: UIButton!
+    
     var assetListView:PhotoAssetListView?
     var titleButton:UIButton!
     //MARK:1 单选 大于1 多选
@@ -32,7 +36,13 @@ class AlbumController: UIViewController {
     var current:FetchModel!
     
     //mark:选中的图片 或者 视频
-    var selecteds:[PhotoModel] = []
+    var selecteds:[PhotoModel]!{
+        willSet{
+            let count = newValue.count
+            updateButton(count: count)
+           
+        }
+    }
     
     
     let itemWidth = (UIScreen.main.bounds.size.width - 20) / 4
@@ -41,13 +51,39 @@ class AlbumController: UIViewController {
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
+        selecteds = []
         self.current = albumList.first
         
         self.stup()
         self.reload()
         self.initNavigation()
         
+    }
+    
+    @IBAction func previewButtonAction(_ sender: Any) {
+  
+    }
+    
+    
+    @IBAction func finishButtonAction(_ sender: Any) {
+        
+    }
+    
+    //MARK:根据选择图片数量更新 预览 完成按钮状态
+    func updateButton(count:Int) -> Void {
+        finishButton.setTitle(count == 0 ? "完成" :"完成(" + String(count) + ")", for: .normal)
+        if count == 0 {
+            finishButton.alpha = 0.5
+            previewButton.alpha = 0.5
+            finishButton.isEnabled = false
+            previewButton.isEnabled  = false
+        }else{
+            finishButton.isEnabled = true
+            previewButton.isEnabled = true
+            finishButton.alpha = 1
+            previewButton.alpha = 1
+        }
     }
     //MARK:更新相册来源
     func reload() -> Void {
@@ -124,7 +160,10 @@ extension AlbumController:AlbumCollectionCellDelegate{
     
     func selected(button: UIButton, photo: PhotoModel) {
         
-       
+        if self.selecteds.count == self.maxNumber && button.isSelected == false {
+            return
+        }
+        
         button.isSelected = !button.isSelected
         button.selectAnimation()
         
@@ -138,6 +177,8 @@ extension AlbumController:AlbumCollectionCellDelegate{
             }
         
         }
+      
+     
        updateAlbumList()
 
         
