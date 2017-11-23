@@ -69,16 +69,16 @@ class FetchModel {
 class AlbumResult {
     
     var imageManager:PHCachingImageManager = PHCachingImageManager()
+   
     
     init() {
       imageManager.stopCachingImagesForAllAssets()
         
       self.collections()
+     
         
     }
     var fetchs:[FetchModel] = []
-    
-     var option:PHImageRequestOptions = PHImageRequestOptions()
     
     //MARK:系统智能相册
    private var smart:PHFetchResult<AnyObject>!{
@@ -103,19 +103,6 @@ class AlbumResult {
     self.fetchs.append(contentsOf: smarts)
     self.fetchs.append(contentsOf: userCustoms)
 
-//      self.fetchs =   self.fetchs.flatMap { (fetchModel) -> FetchModel? in
-//
-//        var model = fetchModel
-//
-//         self.library(index: 0, assetsFetch: fetchModel.fetchResult, thumbSize: CGSize(width: 50.0, height: 50.0), result: { (image, asset) in
-//
-//            model.coverImage = image
-//         })
-//           return model
-//        }
-    
-    
-    
     }
 
     //MARK:遍历相册集合
@@ -158,6 +145,60 @@ class AlbumResult {
         }
     }
     
+    
+    //获取视频
+    public  func libraryVideo(index:Int,assetsFetch:PHFetchResult<PHAsset>,result:@escaping(_ item:AVPlayerItem,_ asset:PHAsset)->()) -> Void{
+        
+        let asset = assetsFetch[index]
+        
+        
+       self.imageManager.requestPlayerItem(forVideo: asset, options: nil) { (playerItem, _) in
+            
+            result(playerItem!,asset)
+        }
+    }
+    //获取原图
+    public  func libraryData(index:Int,assetsFetch:PHFetchResult<PHAsset>,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
+
+        let asset = assetsFetch[index]
+        
+        let option = PHImageRequestOptions()
+        option.resizeMode = .fast
+        
+        PHImageManager.default().requestImage(for: asset, targetSize: PHImageManagerMaximumSize, contentMode: .aspectFill, options: option) { (image, info) in
+            
+            let isDegra = info![PHImageResultIsDegradedKey] as! Bool
+            
+            if  image != nil {
+                result(image!,asset)
+            }
+            
+            if isDegra == false && image == nil {
+                
+                let options = PHImageRequestOptions()
+                options.progressHandler = { progress, _, _, _ in
+                    print("icloud同步中")
+                    DispatchQueue.main.sync {
+                        print(progress)
+                        if progress == 1.0 {
+                            print("同步完成")
+                        }
+                    }
+                }
+                options.isNetworkAccessAllowed = true
+                options.resizeMode = .fast
+                
+                PHImageManager.default().requestImageData(for: asset, options: options, resultHandler: { (imageData, _, _, _) in
+                    result(UIImage(data: imageData!)!,asset)
+                })
+                
+            }
+            
+        }
+        
+        
+    }
+    
      private  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
         
         let retainScale = UIScreen.main.scale
@@ -170,10 +211,9 @@ class AlbumResult {
                 
             }
         
-     
-
     
     }
+    
     
    static func libiray(cacheManager:PHCachingImageManager, asset:PHAsset,thumb:CGSize,result:@escaping(_ image:UIImage)->()) -> Void {
         let retainScale = UIScreen.main.scale
