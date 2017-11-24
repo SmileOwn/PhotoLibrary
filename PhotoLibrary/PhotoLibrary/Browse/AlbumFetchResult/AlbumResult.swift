@@ -23,14 +23,18 @@ struct PhotoModel {
     var isSelected:Bool = false
     var titleIndex:Int = 0
     var fetchTitle:String = ""
+    var index:Int = 0
+    var fetchModel:FetchModel!
     
     
     
-    init(asset:PHAsset,image:UIImage,fetchTitle:String) {
+    init(asset:PHAsset,image:UIImage,fetchTitle:String,index:Int,fetch:FetchModel) {
     
         self.asset = asset
         self.image = image
         self.fetchTitle = fetchTitle
+        self.index = index
+        self.fetchModel = fetch
         switch asset.mediaType.rawValue {
         case 0:
             self.mediaType = .none
@@ -139,7 +143,7 @@ class AlbumResult {
   
         self.library(index: index, assetsFetch: fetch.fetchResult, thumbSize: thumbSize) { (image, asset) in
         
-            let model = PhotoModel(asset: asset, image: image, fetchTitle: fetch.title)
+            let model = PhotoModel(asset: asset, image: image, fetchTitle: fetch.title,index:index,fetch:fetch)
             
             result(model)
         }
@@ -176,6 +180,9 @@ class AlbumResult {
             if isDegra == false && image == nil {
                 
                 let options = PHImageRequestOptions()
+                options.isNetworkAccessAllowed = true
+                options.resizeMode = .fast
+                
                 options.progressHandler = { progress, _, _, _ in
                     print("icloud同步中")
                     DispatchQueue.main.sync {
@@ -185,11 +192,11 @@ class AlbumResult {
                         }
                     }
                 }
-                options.isNetworkAccessAllowed = true
-                options.resizeMode = .fast
+                
                 
                 PHImageManager.default().requestImageData(for: asset, options: options, resultHandler: { (imageData, _, _, _) in
-                    result(UIImage(data: imageData!)!,asset)
+                    guard let imageData = imageData else { return }
+                    result(UIImage(data: imageData)!,asset)
                 })
                 
             }

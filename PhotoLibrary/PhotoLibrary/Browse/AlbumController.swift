@@ -31,6 +31,7 @@ class AlbumController: UIViewController {
     var albumList:[FetchModel] {
         return albumResult.fetchs
     }
+   
     
     //MARK:当前用户相册
     var current:FetchModel!
@@ -58,6 +59,10 @@ class AlbumController: UIViewController {
         self.stup()
         self.reload()
         self.initNavigation()
+        
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
     }
     
@@ -177,25 +182,16 @@ extension AlbumController:AlbumCollectionCellDelegate{
             }
         
         }
-      
      
        updateAlbumList()
 
         
     }
 }
+
 extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        
-        let controller = PhotoBrowseController()
-        controller.fetchModel = self.current
-        controller.index = indexPath.row
-        controller.maxNumber = self.maxNumber
-        controller.albumReult = self.albumResult
-        controller.selecteds   = self.selecteds
-        self.navigationController?.pushViewController(controller, animated: true)
         
     }
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
