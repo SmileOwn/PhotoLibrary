@@ -62,8 +62,6 @@ class AlbumCollectionCell: UICollectionViewCell {
         selectButton.isSelected = model.isSelected
         coverLabel.isHidden = true
     }
-    
-
   
     
     @IBAction func selectButtonAction(_ sender: Any) {

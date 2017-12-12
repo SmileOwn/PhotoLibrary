@@ -229,14 +229,15 @@ class AlbumResult {
     
     
     //MARK:下载原图
-   public func downloadImage(asset:PHAsset,progress:@escaping(_ progress:Double)->()) -> Void {
+    public func downloadImage(asset:PHAsset,progress:@escaping(_ progress:Double,_ error:Error?)->()) -> Void {
         
         let options = PHImageRequestOptions()
         options.isNetworkAccessAllowed = true
         options.resizeMode = .fast
-        options.progressHandler = { p, _, _, _ in
+        options.progressHandler = { p, error, _, _ in
             DispatchQueue.main.sync {
-                progress(p)
+                
+                progress(p,error)
             }
         }
         PHImageManager.default().requestImageData(for: asset, options: options, resultHandler: { (_, _, _, _) in

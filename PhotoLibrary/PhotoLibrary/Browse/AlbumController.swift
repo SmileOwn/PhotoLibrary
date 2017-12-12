@@ -193,14 +193,21 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
     
     func downloadImage(cell:AlbumCollectionCell) -> Void {
         cell.photo.isProgress = true
-        albumResult.downloadImage(asset: cell.photo.asset!) { (progress) in
-            print(progress)
-            cell.coverLabel.text = String(Int((progress * 100))) + "%"
-            if progress == 1.0 {
-                cell.photo.isICloud = false
+        albumResult.downloadImage(asset: cell.photo.asset!) { (progress,error) in
+            
+            if error == nil {
+                cell.coverLabel.text = String(Int((progress * 100))) + "%"
+                if progress == 1.0 {
+                    cell.photo.isICloud = false
+                    cell.photo.isProgress = false
+                    cell.normalStyle(model: cell.photo)
+                }
+            }else{
                 cell.photo.isProgress = false
-                cell.normalStyle(model: cell.photo)
+                cell.icloudStyle(model: cell.photo)
             }
+            
+            
             
         }
     }
@@ -210,7 +217,6 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         
         let model = cell.photo
         if (model?.isProgress)! {
-            print("正在下载中")
             return
         }
         if (model?.isICloud)! {
