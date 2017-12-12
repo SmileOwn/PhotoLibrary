@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 protocol AlbumCollectionCellDelegate:class {
     func selected(button:UIButton,photo:PhotoModel) -> Void
@@ -22,6 +23,8 @@ class AlbumCollectionCell: UICollectionViewCell {
     weak var delgate:AlbumCollectionCellDelegate?
     
     @IBOutlet weak var coverLabel: UILabel!
+    var albumResult:AlbumResult!
+    
     
     var photo:PhotoModel!{
         willSet{
@@ -49,6 +52,7 @@ class AlbumCollectionCell: UICollectionViewCell {
     func icloudStyle(model:PhotoModel) -> Void {
         
         selectButton.setImage(UIImage(named: "isIcloud"), for: .normal)
+        coverLabel.text = ""
         coverLabel.isHidden = false
         
     }
@@ -59,8 +63,14 @@ class AlbumCollectionCell: UICollectionViewCell {
         coverLabel.isHidden = true
     }
     
+
+  
+    
     @IBAction func selectButtonAction(_ sender: Any) {
        
+        if photo.isICloud {
+            return
+        }
         self.delgate?.selected(button: selectButton, photo: photo)
     }
     override func awakeFromNib() {

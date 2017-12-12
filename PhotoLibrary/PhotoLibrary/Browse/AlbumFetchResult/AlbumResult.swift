@@ -23,6 +23,7 @@ protocol AssetProtocol {
 struct PhotoModel {
     var mediaType:MediaType = MediaType.none
     var isICloud:Bool = false
+    var isProgress:Bool = false
     
     var asset:PHAsset?
     var image:UIImage?
@@ -205,7 +206,7 @@ class AlbumResult {
                 options.progressHandler = { progress, _, _, _ in
                     print("icloud同步中")
                     DispatchQueue.main.sync {
-                        print(progress)
+                   
                         if progress == 1.0 {
                             print("同步完成")
                         }
@@ -226,6 +227,23 @@ class AlbumResult {
     }
     
     
+    
+    //MARK:下载原图
+   public func downloadImage(asset:PHAsset,progress:@escaping(_ progress:Double)->()) -> Void {
+        
+        let options = PHImageRequestOptions()
+        options.isNetworkAccessAllowed = true
+        options.resizeMode = .fast
+        options.progressHandler = { p, _, _, _ in
+            DispatchQueue.main.sync {
+                progress(p)
+            }
+        }
+        PHImageManager.default().requestImageData(for: asset, options: options, resultHandler: { (_, _, _, _) in
+            
+        })
+        
+    }
     
      private  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
         

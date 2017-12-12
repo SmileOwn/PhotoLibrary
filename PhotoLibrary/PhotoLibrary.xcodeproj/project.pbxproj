@@ -37,12 +37,6 @@
 		BD41F7BE1FC2C03400C3AF19 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41F7BD1FC2C03400C3AF19 /* Animation.swift */; };
 		BD41F7C01FC2C05600C3AF19 /* TimeInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41F7BF1FC2C05600C3AF19 /* TimeInterval.swift */; };
 		BD6620A51FC7C44C0080E5E1 /* ArrayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6620A41FC7C44C0080E5E1 /* ArrayProtocol.swift */; };
-		BD6620AF1FC80CA10080E5E1 /* DJYImageCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6620AD1FC80CA10080E5E1 /* DJYImageCollectionCell.swift */; };
-		BD6620B01FC80CA10080E5E1 /* DJYImageCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6620AE1FC80CA10080E5E1 /* DJYImageCollectionCell.xib */; };
-		BD6620B31FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6620B11FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.swift */; };
-		BD6620B41FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6620B21FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.xib */; };
-		BD6620B71FC80CD60080E5E1 /* DJYVideoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6620B51FC80CD60080E5E1 /* DJYVideoCollectionCell.swift */; };
-		BD6620B81FC80CD60080E5E1 /* DJYVideoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6620B61FC80CD60080E5E1 /* DJYVideoCollectionCell.xib */; };
 		BD8CB0E81FC40516009209D2 /* photoSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD8CB0E71FC40516009209D2 /* photoSelect@2x.png */; };
 		BDFF677A1FC2BB4400B43848 /* mark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFF67781FC2BB4400B43848 /* mark@2x.png */; };
 		BDFF677B1FC2BB4400B43848 /* photoNormal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */; };
@@ -102,12 +96,6 @@
 		BD41F7BD1FC2C03400C3AF19 /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		BD41F7BF1FC2C05600C3AF19 /* TimeInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeInterval.swift; sourceTree = "<group>"; };
 		BD6620A41FC7C44C0080E5E1 /* ArrayProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayProtocol.swift; sourceTree = "<group>"; };
-		BD6620AD1FC80CA10080E5E1 /* DJYImageCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJYImageCollectionCell.swift; sourceTree = "<group>"; };
-		BD6620AE1FC80CA10080E5E1 /* DJYImageCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJYImageCollectionCell.xib; sourceTree = "<group>"; };
-		BD6620B11FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJYLivePhotoCollectionCell.swift; sourceTree = "<group>"; };
-		BD6620B21FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJYLivePhotoCollectionCell.xib; sourceTree = "<group>"; };
-		BD6620B51FC80CD60080E5E1 /* DJYVideoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DJYVideoCollectionCell.swift; sourceTree = "<group>"; };
-		BD6620B61FC80CD60080E5E1 /* DJYVideoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DJYVideoCollectionCell.xib; sourceTree = "<group>"; };
 		BD8CB0E71FC40516009209D2 /* photoSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoSelect@2x.png"; sourceTree = "<group>"; };
 		BDFF67781FC2BB4400B43848 /* mark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark@2x.png"; sourceTree = "<group>"; };
 		BDFF67791FC2BB4400B43848 /* photoNormal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photoNormal@2x.png"; sourceTree = "<group>"; };
@@ -227,9 +215,6 @@
 		BD41C9281FBD5FA900054448 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				BD6620AA1FC80C800080E5E1 /* image */,
-				BD6620AB1FC80C800080E5E1 /* livePhoto */,
-				BD6620AC1FC80C800080E5E1 /* video */,
 				BD41C9291FBD5FC100054448 /* AlbumCollectionCell.swift */,
 				BD41C92A1FBD5FC100054448 /* AlbumCollectionCell.xib */,
 			);
@@ -280,33 +265,6 @@
 				BD6620A41FC7C44C0080E5E1 /* ArrayProtocol.swift */,
 			);
 			path = Protocol;
-			sourceTree = "<group>";
-		};
-		BD6620AA1FC80C800080E5E1 /* image */ = {
-			isa = PBXGroup;
-			children = (
-				BD6620AD1FC80CA10080E5E1 /* DJYImageCollectionCell.swift */,
-				BD6620AE1FC80CA10080E5E1 /* DJYImageCollectionCell.xib */,
-			);
-			path = image;
-			sourceTree = "<group>";
-		};
-		BD6620AB1FC80C800080E5E1 /* livePhoto */ = {
-			isa = PBXGroup;
-			children = (
-				BD6620B11FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.swift */,
-				BD6620B21FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.xib */,
-			);
-			path = livePhoto;
-			sourceTree = "<group>";
-		};
-		BD6620AC1FC80C800080E5E1 /* video */ = {
-			isa = PBXGroup;
-			children = (
-				BD6620B51FC80CD60080E5E1 /* DJYVideoCollectionCell.swift */,
-				BD6620B61FC80CD60080E5E1 /* DJYVideoCollectionCell.xib */,
-			);
-			path = video;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,11 +378,9 @@
 				BD0CFDC51FC3BD060097C361 /* AssetCell.xib in Resources */,
 				BD41C93F1FBEC20D00054448 /* videoPhoto@2x.png in Resources */,
 				BD41C8C11FBD402E00054448 /* LaunchScreen.storyboard in Resources */,
-				BD6620B41FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.xib in Resources */,
 				BDFF677A1FC2BB4400B43848 /* mark@2x.png in Resources */,
 				BD3154A71FC69B4100E3C252 /* swiftBack@3x.png in Resources */,
 				BD3154AC1FC69BC600E3C252 /* swift_audio_play@2x.png in Resources */,
-				BD6620B01FC80CA10080E5E1 /* DJYImageCollectionCell.xib in Resources */,
 				BD3154AB1FC69BC600E3C252 /* swift_audio_play@3x.png in Resources */,
 				BD3154A81FC69B4100E3C252 /* swiftBack@2x.png in Resources */,
 				BD31C6F01FDF8AB800081F57 /* isIcloud@3x.png in Resources */,
@@ -436,7 +392,6 @@
 				BD31C6EF1FDF8AB800081F57 /* isIcloud@2x.png in Resources */,
 				BD41C92C1FBD5FC100054448 /* AlbumCollectionCell.xib in Resources */,
 				BD41C93D1FBEBD1200054448 /* photo_down@2x.png in Resources */,
-				BD6620B81FC80CD60080E5E1 /* DJYVideoCollectionCell.xib in Resources */,
 				BDFF677B1FC2BB4400B43848 /* photoNormal@2x.png in Resources */,
 				BD41C8BC1FBD402E00054448 /* Main.storyboard in Resources */,
 			);
@@ -468,11 +423,8 @@
 				BD0CFDC41FC3BD060097C361 /* AssetCell.swift in Sources */,
 				BD41C92B1FBD5FC100054448 /* AlbumCollectionCell.swift in Sources */,
 				BD0CFDC01FC3BCC30097C361 /* PhotoAssetListView.swift in Sources */,
-				BD6620AF1FC80CA10080E5E1 /* DJYImageCollectionCell.swift in Sources */,
 				BD41F7BE1FC2C03400C3AF19 /* Animation.swift in Sources */,
-				BD6620B31FC80CC30080E5E1 /* DJYLivePhotoCollectionCell.swift in Sources */,
 				BD41C9321FBD673400054448 /* AlbumResult.swift in Sources */,
-				BD6620B71FC80CD60080E5E1 /* DJYVideoCollectionCell.swift in Sources */,
 				BD41C9261FBD428700054448 /* AlbumController.swift in Sources */,
 				BD6620A51FC7C44C0080E5E1 /* ArrayProtocol.swift in Sources */,
 				BD41C8B71FBD402E00054448 /* AppDelegate.swift in Sources */,

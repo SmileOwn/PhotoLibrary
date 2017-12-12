@@ -191,7 +191,33 @@ extension AlbumController:AlbumCollectionCellDelegate{
 
 extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
     
+    func downloadImage(cell:AlbumCollectionCell) -> Void {
+        cell.photo.isProgress = true
+        albumResult.downloadImage(asset: cell.photo.asset!) { (progress) in
+            print(progress)
+            cell.coverLabel.text = String(Int((progress * 100))) + "%"
+            if progress == 1.0 {
+                cell.photo.isICloud = false
+                cell.photo.isProgress = false
+                cell.normalStyle(model: cell.photo)
+            }
+            
+        }
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let cell = collectionView.cellForItem(at: indexPath) as! AlbumCollectionCell
+        
+        let model = cell.photo
+        if (model?.isProgress)! {
+            print("正在下载中")
+            return
+        }
+        if (model?.isICloud)! {
+            self.downloadImage(cell: cell)
+            return
+        }
+        
         
     }
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
@@ -203,7 +229,6 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionCell", for: indexPath) as! AlbumCollectionCell
         cell.delgate = self
-       
         
         albumResult.library(index: indexPath.row, fetch: current, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (model) in
             
@@ -215,6 +240,7 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
             })
             
             if index != nil { photo.isSelected = true }
+            
             cell.photo = photo
         }
      
