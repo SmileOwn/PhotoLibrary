@@ -21,12 +21,18 @@ class AlbumCollectionCell: UICollectionViewCell {
     @IBOutlet weak var videoLabel: UILabel!
     weak var delgate:AlbumCollectionCellDelegate?
     
+    @IBOutlet weak var coverLabel: UILabel!
     
     var photo:PhotoModel!{
         willSet{
             imgaeView.image = newValue.image
-          selectButton.isSelected = newValue.isSelected
             
+            if newValue.isICloud {
+                self.icloudStyle(model: newValue)
+            }else{
+                self.normalStyle(model: newValue)
+            }
+           
             if newValue.mediaType != .video {
                 videoImageView.isHidden = true
                 videoLabel.isHidden =   true
@@ -35,7 +41,22 @@ class AlbumCollectionCell: UICollectionViewCell {
                 videoLabel.isHidden = false
                 videoLabel.text = newValue.asset?.duration.time
             }
+            
+            
         }
+    }
+    
+    func icloudStyle(model:PhotoModel) -> Void {
+        
+        selectButton.setImage(UIImage(named: "isIcloud"), for: .normal)
+        coverLabel.isHidden = false
+        
+    }
+    func normalStyle(model:PhotoModel) -> Void {
+        selectButton.setImage(UIImage(named: "photoNormal"), for: .normal)
+        selectButton.setImage(UIImage(named: "photoSelect"), for: .selected)
+        selectButton.isSelected = model.isSelected
+        coverLabel.isHidden = true
     }
     
     @IBAction func selectButtonAction(_ sender: Any) {

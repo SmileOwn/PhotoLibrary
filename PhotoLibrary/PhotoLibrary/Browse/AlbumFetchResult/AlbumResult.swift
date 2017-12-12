@@ -15,9 +15,15 @@ enum MediaType:Int {
     case  video = 2
     case  audio = 3
 }
+protocol AssetProtocol {
+   static var mediaType:MediaType{get}
+    
+}
 
 struct PhotoModel {
     var mediaType:MediaType = MediaType.none
+    var isICloud:Bool = false
+    
     var asset:PHAsset?
     var image:UIImage?
     var isSelected:Bool = false
@@ -119,6 +125,9 @@ class AlbumResult {
             let options = PHFetchOptions()
             options.sortDescriptors = [NSSortDescriptor(key: "creationDate",
                                                         ascending: true)]
+            
+            options.predicate =  NSPredicate(format: "mediaType = %d", PHAssetMediaType.image.rawValue)
+            
             guard object is PHAssetCollection else {return}
             let   assetObject = object  as!  PHAssetCollection
             
@@ -140,12 +149,22 @@ class AlbumResult {
     //MARK:获取图片数据
     public  func library(index:Int,fetch:FetchModel,thumbSize:CGSize,result:@escaping(_ photoModel:PhotoModel)->()) -> Void {
      
-  
+      
+        
         self.library(index: index, assetsFetch: fetch.fetchResult, thumbSize: thumbSize) { (image, asset) in
         
-            let model = PhotoModel(asset: asset, image: image, fetchTitle: fetch.title,index:index,fetch:fetch)
+            var model = PhotoModel(asset: asset, image: image, fetchTitle: fetch.title,index:index,fetch:fetch)
             
-            result(model)
+            PHImageManager.default().requestImageData(for: asset, options: nil, resultHandler: { (data, str, orient, info) in
+                
+                let icloud = info!["PHImageResultIsInCloudKey"] as! Int
+                model.isICloud = icloud == 1 ? true : false
+               
+                
+                result(model)
+            })
+            
+        
         }
     }
     
@@ -206,18 +225,23 @@ class AlbumResult {
         
     }
     
+    
+    
      private  func library(index:Int,assetsFetch:PHFetchResult<PHAsset>,thumbSize:CGSize,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
         
         let retainScale = UIScreen.main.scale
         let size =  CGSize(width: thumbSize.width * retainScale, height: thumbSize.height * retainScale)
         let asset = assetsFetch[index]
-       
-            self.imageManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { (image, _) in
+        let option:PHImageRequestOptions = PHImageRequestOptions()
+        option.resizeMode = .fast
+ 
+            self.imageManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: option) { (image, info) in
+            
                 
                     result(image!,asset)
                 
             }
-        
+  
     
     }
     
@@ -227,11 +251,15 @@ class AlbumResult {
     
         let size =  CGSize(width: thumb.width * retainScale, height: thumb.height * retainScale)
     
-        cacheManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { (image, _) in
+        cacheManager.requestImage(for: asset, targetSize: size, contentMode: .aspectFill, options: nil) { (image, info) in
+            
+            
             result(image!)
             
+            
+            
         }
-        
+    
     }
     
    

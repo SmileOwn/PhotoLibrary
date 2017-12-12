@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,6 +35,13 @@
                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWr-LX-PJv">
+                        <rect key="frame" x="0.0" y="0.0" width="267" height="186"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                     <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOy-18-Mxb">
                         <rect key="frame" x="240" y="0.0" width="27" height="27"/>
                         <constraints>
@@ -53,9 +60,13 @@
             <constraints>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="BhG-Z0-eFS" secondAttribute="bottom" constant="5" id="EXc-Qf-aOK"/>
                 <constraint firstItem="7r0-Qc-OQj" firstAttribute="centerY" secondItem="BhG-Z0-eFS" secondAttribute="centerY" id="M86-my-8XE"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="TWr-LX-PJv" secondAttribute="trailing" id="Qbb-hJ-fo8"/>
                 <constraint firstItem="VOy-18-Mxb" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="Sni-qu-lUS"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="TWr-LX-PJv" secondAttribute="bottom" id="T9A-5x-GH9"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="7r0-Qc-OQj" secondAttribute="trailing" constant="10" id="UUk-2l-JK5"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="UwN-kB-8CU" secondAttribute="bottom" id="Ubf-mf-3X0"/>
+                <constraint firstItem="TWr-LX-PJv" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="Vn0-fN-Va4"/>
+                <constraint firstItem="TWr-LX-PJv" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="Zb2-U7-6Cn"/>
                 <constraint firstItem="UwN-kB-8CU" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="hBb-lK-Nfy"/>
                 <constraint firstItem="UwN-kB-8CU" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="hzk-Xf-t17"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="UwN-kB-8CU" secondAttribute="trailing" id="ik1-1X-l1w"/>
@@ -65,6 +76,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="267" height="186"/>
             <connections>
+                <outlet property="coverLabel" destination="TWr-LX-PJv" id="2YE-n1-JXF"/>
                 <outlet property="imgaeView" destination="UwN-kB-8CU" id="X7B-2S-hBY"/>
                 <outlet property="selectButton" destination="VOy-18-Mxb" id="IfA-np-jaX"/>
                 <outlet property="videoImageView" destination="BhG-Z0-eFS" id="qoh-Lr-KEc"/>

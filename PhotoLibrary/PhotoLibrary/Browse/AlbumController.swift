@@ -203,6 +203,8 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionCell", for: indexPath) as! AlbumCollectionCell
         cell.delgate = self
+       
+        
         albumResult.library(index: indexPath.row, fetch: current, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (model) in
             
             var photo = model
