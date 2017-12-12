@@ -16,6 +16,11 @@
 		BD3154AC1FC69BC600E3C252 /* swift_audio_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD3154AA1FC69BC500E3C252 /* swift_audio_play@2x.png */; };
 		BD31C6EF1FDF8AB800081F57 /* isIcloud@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD31C6ED1FDF8AB700081F57 /* isIcloud@2x.png */; };
 		BD31C6F01FDF8AB800081F57 /* isIcloud@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = BD31C6EE1FDF8AB800081F57 /* isIcloud@3x.png */; };
+		BD31C6F41FDFB63600081F57 /* PhotoBrowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD31C6F21FDFB63600081F57 /* PhotoBrowController.swift */; };
+		BD31C6F51FDFB63600081F57 /* PhotoBrowController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD31C6F31FDFB63600081F57 /* PhotoBrowController.xib */; };
+		BD31C6F91FDFB6DB00081F57 /* BlowCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD31C6F71FDFB6DB00081F57 /* BlowCollectionCell.swift */; };
+		BD31C6FA1FDFB6DB00081F57 /* BlowCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD31C6F81FDFB6DB00081F57 /* BlowCollectionCell.xib */; };
+		BD31C6FC1FDFBF7000081F57 /* BlowFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD31C6FB1FDFBF7000081F57 /* BlowFlowLayout.swift */; };
 		BD41C8B71FBD402E00054448 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41C8B61FBD402E00054448 /* AppDelegate.swift */; };
 		BD41C8B91FBD402E00054448 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD41C8B81FBD402E00054448 /* ViewController.swift */; };
 		BD41C8BC1FBD402E00054448 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD41C8BA1FBD402E00054448 /* Main.storyboard */; };
@@ -69,6 +74,11 @@
 		BD3154AA1FC69BC500E3C252 /* swift_audio_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "swift_audio_play@2x.png"; sourceTree = "<group>"; };
 		BD31C6ED1FDF8AB700081F57 /* isIcloud@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "isIcloud@2x.png"; sourceTree = "<group>"; };
 		BD31C6EE1FDF8AB800081F57 /* isIcloud@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "isIcloud@3x.png"; sourceTree = "<group>"; };
+		BD31C6F21FDFB63600081F57 /* PhotoBrowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoBrowController.swift; sourceTree = "<group>"; };
+		BD31C6F31FDFB63600081F57 /* PhotoBrowController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PhotoBrowController.xib; sourceTree = "<group>"; };
+		BD31C6F71FDFB6DB00081F57 /* BlowCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlowCollectionCell.swift; sourceTree = "<group>"; };
+		BD31C6F81FDFB6DB00081F57 /* BlowCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlowCollectionCell.xib; sourceTree = "<group>"; };
+		BD31C6FB1FDFBF7000081F57 /* BlowFlowLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlowFlowLayout.swift; sourceTree = "<group>"; };
 		BD41C8B31FBD402E00054448 /* PhotoLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD41C8B61FBD402E00054448 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD41C8B81FBD402E00054448 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -144,6 +154,26 @@
 			path = cell;
 			sourceTree = "<group>";
 		};
+		BD31C6F11FDFB60600081F57 /* PhotoBrowseController */ = {
+			isa = PBXGroup;
+			children = (
+				BD31C6F61FDFB6BF00081F57 /* Cell */,
+				BD31C6F21FDFB63600081F57 /* PhotoBrowController.swift */,
+				BD31C6F31FDFB63600081F57 /* PhotoBrowController.xib */,
+			);
+			path = PhotoBrowseController;
+			sourceTree = "<group>";
+		};
+		BD31C6F61FDFB6BF00081F57 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BD31C6F71FDFB6DB00081F57 /* BlowCollectionCell.swift */,
+				BD31C6F81FDFB6DB00081F57 /* BlowCollectionCell.xib */,
+				BD31C6FB1FDFBF7000081F57 /* BlowFlowLayout.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		BD41C8AA1FBD402E00054448 = {
 			isa = PBXGroup;
 			children = (
@@ -199,6 +229,7 @@
 		BD41C9231FBD424C00054448 /* Browse */ = {
 			isa = PBXGroup;
 			children = (
+				BD31C6F11FDFB60600081F57 /* PhotoBrowseController */,
 				BD6620A31FC7C4350080E5E1 /* Protocol */,
 				BD0CFDBC1FC3BAA50097C361 /* View */,
 				BD41F7BC1FC2C02600C3AF19 /* Extension */,
@@ -391,7 +422,9 @@
 				BD41C8BE1FBD402E00054448 /* Assets.xcassets in Resources */,
 				BD31C6EF1FDF8AB800081F57 /* isIcloud@2x.png in Resources */,
 				BD41C92C1FBD5FC100054448 /* AlbumCollectionCell.xib in Resources */,
+				BD31C6F51FDFB63600081F57 /* PhotoBrowController.xib in Resources */,
 				BD41C93D1FBEBD1200054448 /* photo_down@2x.png in Resources */,
+				BD31C6FA1FDFB6DB00081F57 /* BlowCollectionCell.xib in Resources */,
 				BDFF677B1FC2BB4400B43848 /* photoNormal@2x.png in Resources */,
 				BD41C8BC1FBD402E00054448 /* Main.storyboard in Resources */,
 			);
@@ -418,6 +451,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD31C6F41FDFB63600081F57 /* PhotoBrowController.swift in Sources */,
 				BD41C8B91FBD402E00054448 /* ViewController.swift in Sources */,
 				BD41F7C01FC2C05600C3AF19 /* TimeInterval.swift in Sources */,
 				BD0CFDC41FC3BD060097C361 /* AssetCell.swift in Sources */,
@@ -425,10 +459,12 @@
 				BD0CFDC01FC3BCC30097C361 /* PhotoAssetListView.swift in Sources */,
 				BD41F7BE1FC2C03400C3AF19 /* Animation.swift in Sources */,
 				BD41C9321FBD673400054448 /* AlbumResult.swift in Sources */,
+				BD31C6F91FDFB6DB00081F57 /* BlowCollectionCell.swift in Sources */,
 				BD41C9261FBD428700054448 /* AlbumController.swift in Sources */,
 				BD6620A51FC7C44C0080E5E1 /* ArrayProtocol.swift in Sources */,
 				BD41C8B71FBD402E00054448 /* AppDelegate.swift in Sources */,
 				BD41C9341FBEBB1A00054448 /* AlbumControllerExtension.swift in Sources */,
+				BD31C6FC1FDFBF7000081F57 /* BlowFlowLayout.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -223,6 +223,9 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
             self.downloadImage(cell: cell)
             return
         }
+        let controller = PhotoBrowController()
+        self.navigationController?.pushViewController(controller, animated: true)
+        
         
         
     }
