@@ -206,8 +206,8 @@ class AlbumResult {
                 options.progressHandler = { progress, _, _, _ in
                     print("icloud同步中")
                     DispatchQueue.main.sync {
-                   
-                        if progress == 1.0 {
+                      print(progress)
+                         if progress == 1.0 {
                             print("同步完成")
                         }
                     }

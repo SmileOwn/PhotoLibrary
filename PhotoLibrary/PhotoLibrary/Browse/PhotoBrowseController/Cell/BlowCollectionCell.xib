@@ -13,27 +13,47 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BlowCollectionCell" customModule="PhotoLibrary" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="364" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="364" height="484"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="364" height="480"/>
+                <rect key="frame" x="0.0" y="0.0" width="364" height="484"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al3-9A-vSl">
-                        <rect key="frame" x="10" y="0.0" width="344" height="480"/>
-                        <color key="backgroundColor" red="0.62352941179999999" green="0.6588235294" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
-                    </imageView>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gJB-Fl-msD">
+                        <rect key="frame" x="10" y="0.0" width="344" height="484"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6zz-a4-nv4">
+                                <rect key="frame" x="0.0" y="0.0" width="344" height="484"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="6zz-a4-nv4" firstAttribute="centerY" secondItem="gJB-Fl-msD" secondAttribute="centerY" id="0aq-tu-1ug"/>
+                            <constraint firstAttribute="bottom" secondItem="6zz-a4-nv4" secondAttribute="bottom" id="CKY-mg-mAs"/>
+                            <constraint firstAttribute="trailing" secondItem="6zz-a4-nv4" secondAttribute="trailing" id="F36-me-9Gj"/>
+                            <constraint firstItem="6zz-a4-nv4" firstAttribute="top" secondItem="gJB-Fl-msD" secondAttribute="top" id="YVt-fD-Icz"/>
+                            <constraint firstItem="6zz-a4-nv4" firstAttribute="centerX" secondItem="gJB-Fl-msD" secondAttribute="centerX" id="s02-me-GT5"/>
+                            <constraint firstItem="6zz-a4-nv4" firstAttribute="leading" secondItem="gJB-Fl-msD" secondAttribute="leading" id="yuQ-7M-LGn"/>
+                        </constraints>
+                    </scrollView>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="al3-9A-vSl" secondAttribute="trailing" constant="10" id="6CD-P3-zOg"/>
-                <constraint firstItem="al3-9A-vSl" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="aWo-ua-8tp"/>
-                <constraint firstAttribute="bottom" secondItem="al3-9A-vSl" secondAttribute="bottom" id="yPa-Bb-4zj"/>
-                <constraint firstItem="al3-9A-vSl" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yQ1-i0-auQ"/>
+                <constraint firstItem="gJB-Fl-msD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="0ap-5m-Jde"/>
+                <constraint firstItem="gJB-Fl-msD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Cra-FO-ebT"/>
+                <constraint firstAttribute="trailing" secondItem="gJB-Fl-msD" secondAttribute="trailing" constant="10" id="Dpc-s3-P8U"/>
+                <constraint firstAttribute="bottom" secondItem="gJB-Fl-msD" secondAttribute="bottom" id="EXl-q6-53g"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="364" height="480"/>
-            <point key="canvasLocation" x="-5" y="75"/>
+            <size key="customSize" width="364" height="484"/>
+            <connections>
+                <outlet property="bottom" destination="EXl-q6-53g" id="bfW-Fc-iRo"/>
+                <outlet property="imageView" destination="6zz-a4-nv4" id="SOg-dm-QZf"/>
+                <outlet property="left" destination="0ap-5m-Jde" id="vNx-hU-dXj"/>
+                <outlet property="right" destination="Dpc-s3-P8U" id="jSB-uU-Jr9"/>
+                <outlet property="scrollView" destination="gJB-Fl-msD" id="vxu-PX-wJT"/>
+                <outlet property="top" destination="Cra-FO-ebT" id="FfJ-7a-qGU"/>
+            </connections>
+            <point key="canvasLocation" x="-5" y="73"/>
         </collectionViewCell>
     </objects>
 </document>

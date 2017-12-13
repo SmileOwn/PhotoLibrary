@@ -52,7 +52,7 @@ class AlbumController: UIViewController {
     @IBOutlet weak var layout: UICollectionViewFlowLayout!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isTranslucent = true
         selecteds = []
         self.current = albumList.first
         
@@ -63,7 +63,7 @@ class AlbumController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        self.collectionView.reloadData()
     }
     
     @IBAction func previewButtonAction(_ sender: Any) {
@@ -224,6 +224,10 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
             return
         }
         let controller = PhotoBrowController()
+        controller.albumResult = self.albumResult
+        controller.current     = self.current
+        controller.currentIndex = indexPath.row
+        
         self.navigationController?.pushViewController(controller, animated: true)
         
         

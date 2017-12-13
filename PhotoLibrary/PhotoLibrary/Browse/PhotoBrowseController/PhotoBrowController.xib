@@ -14,6 +14,8 @@
             <connections>
                 <outlet property="collectionView" destination="70q-6c-1wS" id="DwR-ed-pT7"/>
                 <outlet property="layout" destination="Lpr-k0-2wX" id="Y3u-d6-p8j"/>
+                <outlet property="navView" destination="TfW-95-yDA" id="s6D-4P-7uY"/>
+                <outlet property="titleLabel" destination="TIv-2Y-caq" id="Kmc-5U-HS9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,7 +24,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="70q-6c-1wS">
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="70q-6c-1wS">
                     <rect key="frame" x="-10" y="0.0" width="395" height="667"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Lpr-k0-2wX" customClass="BlowFlowLayout" customModule="PhotoLibrary" customModuleProvider="target">
@@ -36,15 +38,63 @@
                         <outlet property="delegate" destination="-1" id="0rv-UW-ely"/>
                     </connections>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TfW-95-yDA">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uMw-qg-FNx">
+                            <rect key="frame" x="0.0" y="63" width="375" height="1"/>
+                            <color key="backgroundColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="vWX-hD-AFN"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Co-XG-83f">
+                            <rect key="frame" x="20" y="31" width="40" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="g9C-sB-Kl5"/>
+                            </constraints>
+                            <state key="normal" image="photo_back.png"/>
+                            <connections>
+                                <action selector="backButtonAction:" destination="-1" eventType="touchUpInside" id="xsC-4p-6aV"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TIv-2Y-caq">
+                            <rect key="frame" x="187.5" y="42" width="0.0" height="0.0"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <color key="textColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="0.79762414383561642" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="64" id="7FA-Ad-bdX"/>
+                        <constraint firstItem="9Co-XG-83f" firstAttribute="leading" secondItem="TfW-95-yDA" secondAttribute="leading" constant="20" id="ECj-IQ-eIZ"/>
+                        <constraint firstAttribute="trailing" secondItem="uMw-qg-FNx" secondAttribute="trailing" id="Lb3-8g-tlO"/>
+                        <constraint firstAttribute="bottom" secondItem="uMw-qg-FNx" secondAttribute="bottom" id="Lhl-mt-Na4"/>
+                        <constraint firstItem="TIv-2Y-caq" firstAttribute="centerX" secondItem="TfW-95-yDA" secondAttribute="centerX" id="YZz-fP-4Hw"/>
+                        <constraint firstItem="9Co-XG-83f" firstAttribute="centerY" secondItem="TfW-95-yDA" secondAttribute="centerY" constant="10" id="YuS-cx-isa"/>
+                        <constraint firstItem="uMw-qg-FNx" firstAttribute="leading" secondItem="TfW-95-yDA" secondAttribute="leading" id="bOg-4C-Z8t"/>
+                        <constraint firstItem="TIv-2Y-caq" firstAttribute="centerY" secondItem="TfW-95-yDA" secondAttribute="centerY" constant="10" id="r1Q-Hn-WTT"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="TfW-95-yDA" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="1LN-Jw-mwS"/>
                 <constraint firstAttribute="bottom" secondItem="70q-6c-1wS" secondAttribute="bottom" id="96H-R5-yEl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TfW-95-yDA" secondAttribute="trailing" id="GZh-Zo-cB3"/>
                 <constraint firstItem="70q-6c-1wS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gsj-h5-1Wu"/>
                 <constraint firstItem="70q-6c-1wS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="-10" id="yzR-ya-wnx"/>
+                <constraint firstItem="TfW-95-yDA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z1D-1U-YAB"/>
                 <constraint firstItem="70q-6c-1wS" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" constant="20" id="zG0-H9-Xyx"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
         </view>
     </objects>
+    <resources>
+        <image name="photo_back.png" width="10" height="17"/>
+    </resources>
 </document>
