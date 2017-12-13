@@ -12,19 +12,22 @@ class BlowFlowLayout: UICollectionViewFlowLayout {
 
   
  
-    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
-
-        let itemIndex = (self.collectionView?.contentOffset.x)! / (self.itemSize.width + 10)
-        
-        let index = CGFloat(Int(roundf(Float(itemIndex))))
-        
-        let x = UIScreen.main.bounds.size.width * index + index  * 10
-        var temp = proposedContentOffset
-        temp.x = x
-      
-        
-        return super.targetContentOffset(forProposedContentOffset:temp, withScrollingVelocity: velocity)
-       
-        
-    }
+//    override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint, withScrollingVelocity velocity: CGPoint) -> CGPoint {
+//
+//        let itemIndex = (self.collectionView?.contentOffset.x)! / (self.itemSize.width + 10)
+//
+//        let index = CGFloat(Int(roundf(Float(itemIndex))))
+//
+//        let x = UIScreen.main.bounds.size.width * index + index  * 10
+//        var temp = proposedContentOffset
+//        temp.x = x
+//
+//
+//        return super.targetContentOffset(forProposedContentOffset:temp, withScrollingVelocity: velocity)
+//
+//
+//    }
+//    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
+//        return true
+//    }
 }

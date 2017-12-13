@@ -14,14 +14,24 @@ class PhotoBrowController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.automaticallyAdjustsScrollViewInsets = false
         self.collectionView.register(UINib(nibName: "BlowCollectionCell", bundle: nil), forCellWithReuseIdentifier: "BlowCollectionCell")
      
         layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing      = 10
-    
+        layout.minimumLineSpacing      = 0
+        self.collectionView.isPagingEnabled = true
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        layout.itemSize = CGSize(width: self.view.frame.size.width, height: self.view.frame.size.height-64)
+        layout.itemSize = CGSize(width: self.view.frame.size.width+20, height: UIScreen.main.bounds.size.height)
     
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
     }
 
     override func didReceiveMemoryWarning() {
