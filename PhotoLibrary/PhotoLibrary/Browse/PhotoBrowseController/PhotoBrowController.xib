@@ -13,8 +13,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhotoBrowController" customModule="PhotoLibrary" customModuleProvider="target">
             <connections>
                 <outlet property="collectionView" destination="70q-6c-1wS" id="DwR-ed-pT7"/>
+                <outlet property="finishButton" destination="ebo-D3-fIJ" id="8Bw-ee-s9R"/>
                 <outlet property="layout" destination="Lpr-k0-2wX" id="Y3u-d6-p8j"/>
                 <outlet property="navView" destination="TfW-95-yDA" id="s6D-4P-7uY"/>
+                <outlet property="selectButton" destination="W4p-rJ-pPj" id="YD8-Rj-bcT"/>
                 <outlet property="titleLabel" destination="TIv-2Y-caq" id="Kmc-5U-HS9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -67,6 +69,17 @@
                             <color key="textColor" red="0.27450980392156865" green="0.27450980392156865" blue="0.27450980392156865" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebo-D3-fIJ">
+                            <rect key="frame" x="314" y="28" width="41" height="28"/>
+                            <color key="backgroundColor" red="0.14901960780000001" green="0.6705882353" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <inset key="contentEdgeInsets" minX="5" minY="5" maxX="5" maxY="5"/>
+                            <state key="normal" title="完成">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="finishButtonAction:" destination="-1" eventType="touchUpInside" id="ccI-dX-N35"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="0.79762414383561642" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
@@ -74,12 +87,26 @@
                         <constraint firstItem="9Co-XG-83f" firstAttribute="leading" secondItem="TfW-95-yDA" secondAttribute="leading" constant="20" id="ECj-IQ-eIZ"/>
                         <constraint firstAttribute="trailing" secondItem="uMw-qg-FNx" secondAttribute="trailing" id="Lb3-8g-tlO"/>
                         <constraint firstAttribute="bottom" secondItem="uMw-qg-FNx" secondAttribute="bottom" id="Lhl-mt-Na4"/>
+                        <constraint firstAttribute="trailing" secondItem="ebo-D3-fIJ" secondAttribute="trailing" constant="20" id="TM9-ZF-64t"/>
+                        <constraint firstItem="ebo-D3-fIJ" firstAttribute="centerY" secondItem="9Co-XG-83f" secondAttribute="centerY" id="XLS-3e-Hg9"/>
                         <constraint firstItem="TIv-2Y-caq" firstAttribute="centerX" secondItem="TfW-95-yDA" secondAttribute="centerX" id="YZz-fP-4Hw"/>
                         <constraint firstItem="9Co-XG-83f" firstAttribute="centerY" secondItem="TfW-95-yDA" secondAttribute="centerY" constant="10" id="YuS-cx-isa"/>
                         <constraint firstItem="uMw-qg-FNx" firstAttribute="leading" secondItem="TfW-95-yDA" secondAttribute="leading" id="bOg-4C-Z8t"/>
                         <constraint firstItem="TIv-2Y-caq" firstAttribute="centerY" secondItem="TfW-95-yDA" secondAttribute="centerY" constant="10" id="r1Q-Hn-WTT"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W4p-rJ-pPj">
+                    <rect key="frame" x="294" y="84" width="81" height="27"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="81" id="HOs-h6-F2K"/>
+                        <constraint firstAttribute="height" constant="27" id="X1M-UK-ect"/>
+                    </constraints>
+                    <state key="normal" image="photoNormal.png"/>
+                    <state key="selected" image="photoSelect.png"/>
+                    <connections>
+                        <action selector="selectButtonAction:" destination="-1" eventType="touchUpInside" id="awj-Jk-NDp"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -87,6 +114,8 @@
                 <constraint firstAttribute="bottom" secondItem="70q-6c-1wS" secondAttribute="bottom" id="96H-R5-yEl"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TfW-95-yDA" secondAttribute="trailing" id="GZh-Zo-cB3"/>
                 <constraint firstItem="70q-6c-1wS" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="gsj-h5-1Wu"/>
+                <constraint firstItem="W4p-rJ-pPj" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="k7N-t5-rhE"/>
+                <constraint firstItem="W4p-rJ-pPj" firstAttribute="top" secondItem="TfW-95-yDA" secondAttribute="bottom" constant="20" id="tQV-dP-O0a"/>
                 <constraint firstItem="70q-6c-1wS" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="-10" id="yzR-ya-wnx"/>
                 <constraint firstItem="TfW-95-yDA" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="z1D-1U-YAB"/>
                 <constraint firstItem="70q-6c-1wS" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" constant="20" id="zG0-H9-Xyx"/>
@@ -95,6 +124,8 @@
         </view>
     </objects>
     <resources>
+        <image name="photoNormal.png" width="27" height="27"/>
+        <image name="photoSelect.png" width="27" height="27"/>
         <image name="photo_back.png" width="10" height="17"/>
     </resources>
 </document>

@@ -15,6 +15,8 @@ class PhotoBrowController: UIViewController {
     var currentIndex:Int = 0
     var isShowNav:Bool = true
     
+    @IBOutlet weak var selectButton: UIButton!
+    @IBOutlet weak var finishButton: UIButton!
     @IBOutlet weak var navView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     
@@ -39,6 +41,11 @@ class PhotoBrowController: UIViewController {
         return true
     }
    
+    @IBAction func finishButtonAction(_ sender: Any) {
+    }
+    @IBAction func selectButtonAction(_ sender: Any) {
+    }
+    
     @IBAction func backButtonAction(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
