@@ -179,6 +179,13 @@ extension AlbumController:AlbumCollectionCellDelegate{
         
     }
 }
+extension AlbumController:PhotoBrowControllerDelegate{
+    func goback(selects: [PhotoModel]) {
+        self.selecteds = selects
+        self.updateAlbumList()
+        self.collectionView.reloadData()
+    }
+}
 
 extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
     
@@ -218,8 +225,9 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         controller.albumResult = self.albumResult
         controller.current     = self.current
         controller.currentIndex = indexPath.row
-        controller.selected    = self.selecteds
-        
+        controller.selecteds   = self.selecteds
+        controller.maxNumber   = self.maxNumber
+        controller.delegate    = self
         self.navigationController?.pushViewController(controller, animated: true)
         
         

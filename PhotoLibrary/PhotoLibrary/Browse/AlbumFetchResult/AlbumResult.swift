@@ -216,6 +216,8 @@ class AlbumResult {
                 
                 PHImageManager.default().requestImageData(for: asset, options: options, resultHandler: { (imageData, _, _, _) in
                     guard let imageData = imageData else { return }
+                    
+                    
                     result(UIImage(data: imageData)!,asset)
                 })
                 

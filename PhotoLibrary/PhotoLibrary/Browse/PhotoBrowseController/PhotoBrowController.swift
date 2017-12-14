@@ -7,14 +7,22 @@
 //
 
 import UIKit
-
+import Photos
+protocol PhotoBrowControllerDelegate:class {
+    
+    func goback(selects:[PhotoModel]) -> Void
+    
+}
 class PhotoBrowController: UIViewController {
 
     var albumResult:AlbumResult!
     var current:FetchModel!
     var currentIndex:Int = 0
     var isShowNav:Bool = true
-    var selected:[PhotoModel]!
+    var selecteds:[PhotoModel]!
+    var maxNumber:Int = 0
+    
+   weak var delegate:PhotoBrowControllerDelegate?
     
     
     @IBOutlet weak var selectButton: UIButton!
@@ -39,16 +47,48 @@ class PhotoBrowController: UIViewController {
         self.updateTitle()
       
     }
+    //MARK:获取 photo下标
+    func index(photo:PhotoModel) -> Int? {
+        let index =  selecteds.index(where: { (model) -> Bool in
+            return model.asset?.localIdentifier == photo.asset?.localIdentifier
+        })
+        return index
+    }
+    
     override var prefersStatusBarHidden: Bool{
         return true
     }
    
     @IBAction func finishButtonAction(_ sender: Any) {
+        
+       
     }
     @IBAction func selectButtonAction(_ sender: Any) {
+        albumResult.library(index: currentIndex, fetch: current, thumbSize: PHImageManagerMaximumSize) { (model) in
+            
+            if self.selecteds.count == self.maxNumber && self.selectButton.isSelected == false {
+                return
+            }
+            self.selectButton.isSelected = !self.selectButton.isSelected
+            self.selectButton.selectAnimation()
+            
+            if self.selectButton.isSelected {
+                self.selecteds.append(model)
+            }else{
+                let index = self.index(photo: model)
+                
+                if index != nil{
+                    self.selecteds.remove(at: index!)
+                }
+                
+            }
+            
+            self.finishButton.updateTitle(count: self.selecteds.count)
+        }
     }
     
     @IBAction func backButtonAction(_ sender: Any) {
+        self.delegate?.goback(selects: selecteds)
         self.navigationController?.popViewController(animated: true)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -87,13 +127,13 @@ extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSourc
         self.titleLabel.text = String(currentIndex) + "/" + String(current.count)
         let asset = current.fetchResult[currentIndex]
         
-       let assets =  selected.flatMap { (model) -> String? in
+        let assets =  selecteds.flatMap { (model) -> String? in
             
             return model.asset?.localIdentifier
         }
        self.selectButton.isSelected = assets.contains(asset.localIdentifier)
         
-       self.finishButton.updateTitle(count: selected.count)
+        self.finishButton.updateTitle(count: selecteds.count)
     }
  
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
