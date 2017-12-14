@@ -14,6 +14,8 @@ class PhotoBrowController: UIViewController {
     var current:FetchModel!
     var currentIndex:Int = 0
     var isShowNav:Bool = true
+    var selected:[PhotoModel]!
+    
     
     @IBOutlet weak var selectButton: UIButton!
     @IBOutlet weak var finishButton: UIButton!
@@ -83,6 +85,15 @@ extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSourc
    
     func updateTitle() -> Void {
         self.titleLabel.text = String(currentIndex) + "/" + String(current.count)
+        let asset = current.fetchResult[currentIndex]
+        
+       let assets =  selected.flatMap { (model) -> String? in
+            
+            return model.asset?.localIdentifier
+        }
+       self.selectButton.isSelected = assets.contains(asset.localIdentifier)
+        
+       self.finishButton.updateTitle(count: selected.count)
     }
  
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

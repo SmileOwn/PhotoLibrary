@@ -77,18 +77,9 @@ class AlbumController: UIViewController {
     
     //MARK:根据选择图片数量更新 预览 完成按钮状态
     func updateButton(count:Int) -> Void {
-        finishButton.setTitle(count == 0 ? "完成" :"完成(" + String(count) + ")", for: .normal)
-        if count == 0 {
-            finishButton.alpha = 0.5
-            previewButton.alpha = 0.5
-            finishButton.isEnabled = false
-            previewButton.isEnabled  = false
-        }else{
-            finishButton.isEnabled = true
-            previewButton.isEnabled = true
-            finishButton.alpha = 1
-            previewButton.alpha = 1
-        }
+        finishButton.updateTitle(count: count)
+        previewButton.updateButton(count: count)
+       
     }
     //MARK:更新相册来源
     func reload() -> Void {
@@ -227,6 +218,7 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         controller.albumResult = self.albumResult
         controller.current     = self.current
         controller.currentIndex = indexPath.row
+        controller.selected    = self.selecteds
         
         self.navigationController?.pushViewController(controller, animated: true)
         
