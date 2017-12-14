@@ -19,7 +19,7 @@ extension ButtonScanAnimationProtocol where Self:UIButton{
         }) { (falg)in}}
     
     func updateTitle(count:Int) -> Void {
-        self.setTitle(count == 0 ? "完成" :"完成(" + String(count) + ")", for: .normal)
+        self.setTitle(count == 0 ? "已选" :"已选(" + String(count) + ")", for: .normal)
         self.updateButton(count: count)
     }
     func updateButton(count:Int) -> Void {

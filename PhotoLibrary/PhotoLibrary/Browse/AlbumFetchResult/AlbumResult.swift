@@ -182,10 +182,7 @@ class AlbumResult {
         }
     }
     //获取原图
-    public  func libraryData(index:Int,assetsFetch:PHFetchResult<PHAsset>,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
-
-        let asset = assetsFetch[index]
-        
+    public func masterImage(_ asset: PHAsset, _ result: @escaping (UIImage, PHAsset) -> ()) {
         let option = PHImageRequestOptions()
         option.resizeMode = .fast
         
@@ -206,8 +203,8 @@ class AlbumResult {
                 options.progressHandler = { progress, _, _, _ in
                     print("icloud同步中")
                     DispatchQueue.main.sync {
-                      print(progress)
-                         if progress == 1.0 {
+                        print(progress)
+                        if progress == 1.0 {
                             print("同步完成")
                         }
                     }
@@ -224,6 +221,13 @@ class AlbumResult {
             }
             
         }
+    }
+    
+    public  func libraryData(index:Int,assetsFetch:PHFetchResult<PHAsset>,result:@escaping(_ image:UIImage,_ asset:PHAsset)->()) -> Void {
+
+        let asset = assetsFetch[index]
+        
+        masterImage(asset, result)
         
         
     }

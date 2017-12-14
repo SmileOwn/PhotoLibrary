@@ -8,6 +8,9 @@
 
 import UIKit
 import Photos
+
+
+
 protocol PhotoBrowControllerDelegate:class {
     
     func goback(selects:[PhotoModel]) -> Void
@@ -21,6 +24,9 @@ class PhotoBrowController: UIViewController {
     var isShowNav:Bool = true
     var selecteds:[PhotoModel]!
     var maxNumber:Int = 0
+    //0 点击cell 进入 1预览
+    var type:Int = 0
+    
     
    weak var delegate:PhotoBrowControllerDelegate?
     
@@ -42,7 +48,12 @@ class PhotoBrowController: UIViewController {
         self.collectionView.isPagingEnabled = true
         layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         layout.itemSize = CGSize(width: self.view.frame.size.width+20, height: UIScreen.main.bounds.size.height)
-        self.collectionView.scrollToItem(at: IndexPath(item: currentIndex, section: 0), at: .right, animated: false)
+        
+        if self.type == 0 {
+            
+            self.collectionView.scrollToItem(at: IndexPath(item: self.currentIndex, section: 0), at: .right, animated: false)
+        }
+       
         
         self.updateTitle()
       
@@ -64,6 +75,7 @@ class PhotoBrowController: UIViewController {
        
     }
     @IBAction func selectButtonAction(_ sender: Any) {
+     
         albumResult.library(index: currentIndex, fetch: current, thumbSize: PHImageManagerMaximumSize) { (model) in
             
             if self.selecteds.count == self.maxNumber && self.selectButton.isSelected == false {
@@ -125,13 +137,18 @@ extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSourc
    
     func updateTitle() -> Void {
         self.titleLabel.text = String(currentIndex) + "/" + String(current.count)
-        let asset = current.fetchResult[currentIndex]
+        var asset:PHAsset? = nil
         
+        if self.type == 1 {
+            asset = selecteds[currentIndex].asset
+        }else{
+             asset = current.fetchResult[currentIndex]
+        }
         let assets =  selecteds.flatMap { (model) -> String? in
             
             return model.asset?.localIdentifier
         }
-       self.selectButton.isSelected = assets.contains(asset.localIdentifier)
+        self.selectButton.isSelected = assets.contains((asset?.localIdentifier)!)
         
         self.finishButton.updateTitle(count: selecteds.count)
     }
@@ -152,15 +169,24 @@ extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSourc
     }
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        
-        return self.current.count
+       
+        return self.type == 1 ? self.selecteds.count : current.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BlowCollectionCell", for: indexPath) as! BlowCollectionCell
         cell.delegate = self
         cell.stupScrollowView()
-        
+       
+        if self.type == 1 {
+            let photo = selecteds[indexPath.row]
+            
+            albumResult.masterImage(photo.asset!, { (image, asset) in
+                cell.imageView.image = image
+            })
+            
+            return cell
+        }
         albumResult.libraryData(index: indexPath.row, assetsFetch: current.fetchResult) { (image, asset) in
             
             cell.imageView.image = image

@@ -67,12 +67,12 @@ class AlbumController: UIViewController {
     }
     
     @IBAction func previewButtonAction(_ sender: Any) {
-  
+        self.pusBrowController(index: 0,type: 1)
     }
     
     
     @IBAction func finishButtonAction(_ sender: Any) {
-        
+        self.pusBrowController(index: 0,type: 1)
     }
     
     //MARK:根据选择图片数量更新 预览 完成按钮状态
@@ -209,6 +209,19 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
             
         }
     }
+    func pusBrowController(index:Int,type:Int) -> Void {
+        let controller = PhotoBrowController()
+        controller.albumResult = self.albumResult
+        controller.current     = self.current
+        controller.currentIndex = index
+        controller.selecteds   = self.selecteds
+        controller.maxNumber   = self.maxNumber
+        controller.type        = type
+        controller.delegate    = self
+        self.navigationController?.pushViewController(controller, animated: true)
+        
+        
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let cell = collectionView.cellForItem(at: indexPath) as! AlbumCollectionCell
@@ -221,17 +234,8 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
             self.downloadImage(cell: cell)
             return
         }
-        let controller = PhotoBrowController()
-        controller.albumResult = self.albumResult
-        controller.current     = self.current
-        controller.currentIndex = indexPath.row
-        controller.selecteds   = self.selecteds
-        controller.maxNumber   = self.maxNumber
-        controller.delegate    = self
-        self.navigationController?.pushViewController(controller, animated: true)
-        
-        
-        
+       
+        self.pusBrowController(index: indexPath.row,type:0)
     }
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return self.current.count
