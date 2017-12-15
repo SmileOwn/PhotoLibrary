@@ -170,6 +170,9 @@ class AlbumResult {
     }
     
     
+
+    
+    
     //获取视频
     public  func libraryVideo(index:Int,assetsFetch:PHFetchResult<PHAsset>,result:@escaping(_ item:AVPlayerItem,_ asset:PHAsset)->()) -> Void{
         

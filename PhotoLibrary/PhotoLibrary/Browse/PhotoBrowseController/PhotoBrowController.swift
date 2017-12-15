@@ -26,7 +26,7 @@ class PhotoBrowController: UIViewController {
     var maxNumber:Int = 0
     //0 点击cell 进入 1预览
     var type:Int = 0
-    
+    var selectsCopy:[PhotoModel]!
     
    weak var delegate:PhotoBrowControllerDelegate?
     
@@ -52,6 +52,8 @@ class PhotoBrowController: UIViewController {
         if self.type == 0 {
             
             self.collectionView.scrollToItem(at: IndexPath(item: self.currentIndex, section: 0), at: .right, animated: false)
+        }else{
+            self.selectsCopy = selecteds
         }
        
         
@@ -76,6 +78,25 @@ class PhotoBrowController: UIViewController {
     }
     @IBAction func selectButtonAction(_ sender: Any) {
      
+        
+        if self.type == 1 {
+            self.selectButton.isSelected = !self.selectButton.isSelected
+            
+            if !self.selectButton.isSelected {
+                
+                self.selecteds.remove(at: currentIndex)
+                
+            }else{
+                self.selecteds.append(selectsCopy[currentIndex])
+            }
+            
+           
+            self.finishButton.updateTitle(count: self.selecteds.count)
+            return
+        }
+        
+        
+        
         albumResult.library(index: currentIndex, fetch: current, thumbSize: PHImageManagerMaximumSize) { (model) in
             
             if self.selecteds.count == self.maxNumber && self.selectButton.isSelected == false {
@@ -136,11 +157,11 @@ extension PhotoBrowController:BrowseCollectionCellDelegate{
 extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSource{
    
     func updateTitle() -> Void {
-        self.titleLabel.text = String(currentIndex) + "/" + String(current.count)
+        self.titleLabel.text = String(currentIndex+1) + "/" + String(current.count)
         var asset:PHAsset? = nil
         
         if self.type == 1 {
-            asset = selecteds[currentIndex].asset
+            asset = selectsCopy[currentIndex].asset
         }else{
              asset = current.fetchResult[currentIndex]
         }
@@ -170,7 +191,7 @@ extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSourc
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
        
-        return self.type == 1 ? self.selecteds.count : current.count
+        return self.type == 1 ? self.selectsCopy.count : current.count
     }
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
@@ -179,7 +200,7 @@ extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSourc
         cell.stupScrollowView()
        
         if self.type == 1 {
-            let photo = selecteds[indexPath.row]
+            let photo = selectsCopy[indexPath.row]
             
             albumResult.masterImage(photo.asset!, { (image, asset) in
                 cell.imageView.image = image
