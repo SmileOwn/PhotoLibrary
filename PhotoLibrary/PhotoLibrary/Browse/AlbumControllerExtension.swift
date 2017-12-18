@@ -95,6 +95,26 @@ extension AlbumController{
     }
     @objc func finishAction() -> Void {
         
+        var images:[UIImage] = []
+        
+        
+        for (_,value) in selecteds.enumerated() {
+            
+            self.albumResult.masterImage(value.asset!, { (image, asset) in
+                images.append(image)
+                DispatchQueue.main.async {
+                    self.dismiss(animated: true, completion: {
+                  
+                        
+                    })
+                }
+                
+            })
+        }
+        
+        
+       
+        
     }
         
 }
