@@ -34,6 +34,9 @@ struct PhotoModel {
     var fetchModel:FetchModel!
     
     
+    init() {
+        
+    }
     
     init(asset:PHAsset,image:UIImage,fetchTitle:String,index:Int,fetch:FetchModel) {
     

@@ -78,46 +78,13 @@ class PhotoBrowController: UIViewController {
     }
     @IBAction func selectButtonAction(_ sender: Any) {
      
-        
-        if self.type == 1 {
-            self.selectButton.isSelected = !self.selectButton.isSelected
-            
-            if !self.selectButton.isSelected {
-                
-                self.selecteds.remove(at: currentIndex)
-                
-            }else{
-                self.selecteds.append(selectsCopy[currentIndex])
-            }
-            
-           
-            self.finishButton.updateTitle(count: self.selecteds.count)
-            return
-        }
+        var model = PhotoModel()
+            model.asset = current.fetchResult[currentIndex]
         
         
-        
-        albumResult.library(index: currentIndex, fetch: current, thumbSize: PHImageManagerMaximumSize) { (model) in
-            
-            if self.selecteds.count == self.maxNumber && self.selectButton.isSelected == false {
-                return
-            }
-            self.selectButton.isSelected = !self.selectButton.isSelected
-            self.selectButton.selectAnimation()
-            
-            if self.selectButton.isSelected {
-                self.selecteds.append(model)
-            }else{
-                let index = self.index(photo: model)
-                
-                if index != nil{
-                    self.selecteds.remove(at: index!)
-                }
-                
-            }
-            
-            self.finishButton.updateTitle(count: self.selecteds.count)
-        }
+   selecteds =  AlbumCollection.selectStatus(max: self.maxNumber, selecteds: selecteds, button: self.selectButton, photo: model)
+          self.finishButton.updateTitle(count: self.selecteds.count)
+      
     }
     
     @IBAction func backButtonAction(_ sender: Any) {

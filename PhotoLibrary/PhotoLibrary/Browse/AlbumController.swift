@@ -156,23 +156,7 @@ extension AlbumController:AlbumCollectionCellDelegate{
     
     func selected(button: UIButton, photo: PhotoModel) {
         
-        if self.selecteds.count == self.maxNumber && button.isSelected == false {
-            return
-        }
-        
-        button.isSelected = !button.isSelected
-        button.selectAnimation()
-        
-        if button.isSelected {
-            selecteds.append(photo)
-        }else{
-            let index = self.index(photo: photo)
-            
-            if index != nil{
-                selecteds.remove(at: index!)
-            }
-        
-        }
+     selecteds =  AlbumCollection.selectStatus(max: self.maxNumber, selecteds: selecteds, button: button, photo: photo)
      
        updateAlbumList()
 
