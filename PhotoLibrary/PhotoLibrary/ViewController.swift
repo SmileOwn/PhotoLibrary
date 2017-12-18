@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     }
 
     @IBAction func photoButtonAction(_ sender: Any) {
-        AlbumController.album()
+        AlbumController.album(delegate: self, max: 9)
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -24,5 +24,11 @@ class ViewController: UIViewController {
     }
 
 
+}
+extension ViewController:AlbumControllerDelegate{
+    func albumImages(images: [UIImage]) {
+        
+        print("images = \(images)")
+    }
 }
 

@@ -103,10 +103,10 @@ extension AlbumController{
             self.albumResult.masterImage(value.asset!, { (image, asset) in
                 images.append(image)
                 DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: {
-                  
-                        
+                    self.navigationController?.dismiss(animated: true, completion: {
+                           self.delegate?.albumImages(images: images)
                     })
+                    
                 }
                 
             })

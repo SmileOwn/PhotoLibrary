@@ -7,6 +7,11 @@
 //
 
 import UIKit
+protocol AlbumControllerDelegate:class {
+    
+    func albumImages(images:[UIImage]) -> Void
+    
+}
 
 class AlbumController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
@@ -14,6 +19,8 @@ class AlbumController: UIViewController {
     @IBOutlet weak var finishButton: UIButton!
     
     @IBOutlet weak var previewButton: UIButton!
+    
+    var delegate:AlbumControllerDelegate?
     
     var assetListView:PhotoAssetListView?
     var titleButton:UIButton!
@@ -251,9 +258,12 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
 }
 extension AlbumController{
     
-    static func album() -> Void {
+    static func album(delegate:Any,max:Int) -> Void {
         let root = UIApplication.shared.keyWindow?.rootViewController
-        let nav = UINavigationController(rootViewController: AlbumController())
+        let album = AlbumController()
+        album.delegate = delegate as? AlbumControllerDelegate
+        album.maxNumber = max
+        let nav = UINavigationController(rootViewController: album)
        
         root?.present(nav, animated: true, completion: nil)
         
