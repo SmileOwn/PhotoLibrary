@@ -60,29 +60,29 @@ class PhotoBrowController: UIViewController {
         self.updateTitle()
       
     }
-    //MARK:获取 photo下标
-    func index(photo:PhotoModel) -> Int? {
-        let index =  selecteds.index(where: { (model) -> Bool in
-            return model.asset?.localIdentifier == photo.asset?.localIdentifier
-        })
-        return index
-    }
     
     override var prefersStatusBarHidden: Bool{
         return true
     }
    
     @IBAction func finishButtonAction(_ sender: Any) {
-        
+        self.delegate?.goback(selects: selecteds)
+        self.navigationController?.popViewController(animated: true)
        
     }
     @IBAction func selectButtonAction(_ sender: Any) {
      
+        
         var model = PhotoModel()
-            model.asset = current.fetchResult[currentIndex]
         
+        if type == 1 {
+            model.asset = selectsCopy[currentIndex].asset
+        }else{
+             model.asset = current.fetchResult[currentIndex]
+        }
         
-   selecteds =  AlbumCollection.selectStatus(max: self.maxNumber, selecteds: selecteds, button: self.selectButton, photo: model)
+        selecteds =  AlbumCollection.selectStatus(max: self.maxNumber, selecteds: selecteds, button: self.selectButton, photo: model)
+        
           self.finishButton.updateTitle(count: self.selecteds.count)
       
     }
@@ -124,7 +124,9 @@ extension PhotoBrowController:BrowseCollectionCellDelegate{
 extension PhotoBrowController:UICollectionViewDelegate,UICollectionViewDataSource{
    
     func updateTitle() -> Void {
-        self.titleLabel.text = String(currentIndex+1) + "/" + String(current.count)
+        let count = self.type == 1 ? selectsCopy.count : current.count
+        
+        self.titleLabel.text = String(currentIndex+1) + "/" + String(count)
         var asset:PHAsset? = nil
         
         if self.type == 1 {
