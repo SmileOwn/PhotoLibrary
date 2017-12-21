@@ -27,7 +27,7 @@ class ViewController: UIViewController {
 }
 extension ViewController:AlbumControllerDelegate{
     func albumImages(images: [UIImage]) {
-        
+
         print("images = \(images)")
     }
 }

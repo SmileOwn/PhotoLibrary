@@ -90,12 +90,15 @@ extension AlbumController{
         
     }
     @objc func cancleAction() -> Void {
-        self.dismiss(animated: true, completion: nil)
+        AlbumAlertView.show(superView: self.view)
+        
+       // self.dismiss(animated: true, completion: nil)
         
     }
     @objc func finishAction() -> Void {
         
         var images:[UIImage] = []
+        
         
         
         for (_,value) in selecteds.enumerated() {

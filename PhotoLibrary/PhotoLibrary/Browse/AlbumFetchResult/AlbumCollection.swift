@@ -11,6 +11,8 @@ import UIKit
 import Photos
 class AlbumCollection {
     
+    
+    
    static func selectStatus(max:Int,selecteds:[PhotoModel],button:UIButton,photo:PhotoModel) -> [PhotoModel] {
         
         var photos:[PhotoModel] = selecteds
