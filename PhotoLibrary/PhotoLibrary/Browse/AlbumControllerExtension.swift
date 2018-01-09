@@ -90,9 +90,9 @@ extension AlbumController{
         
     }
     @objc func cancleAction() -> Void {
-        AlbumAlertView.show(superView: self.view)
+       // AlbumAlertView.show(superView: self.view)
         
-       // self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
         
     }
     @objc func finishAction() -> Void {

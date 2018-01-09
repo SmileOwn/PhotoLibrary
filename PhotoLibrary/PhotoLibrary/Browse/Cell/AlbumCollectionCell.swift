@@ -48,6 +48,12 @@ class AlbumCollectionCell: UICollectionViewCell {
             
         }
     }
+    var isSingle:Bool! {
+        willSet {
+            selectButton.isHidden = newValue
+        }
+    }
+    
     
     func icloudStyle(model:PhotoModel) -> Void {
         

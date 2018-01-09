@@ -27,6 +27,11 @@ class AlbumController: UIViewController {
     //MARK:1 单选 大于1 多选
     var maxNumber:Int = 9
     
+    var isSingle:Bool{
+        
+        return maxNumber == 1 ? true : false
+    }
+    
     
     //用于解决xib中colllectionView scrollToItem 无效问题
     var flag = true
@@ -225,6 +230,13 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
             self.downloadImage(cell: cell)
             return
         }
+        
+        if self.isSingle == true {
+            
+            self.selecteds.append(model!)
+            self.finishAction()
+            return
+        }
        
         self.pusBrowController(index: indexPath.row,type:0)
     }
@@ -237,6 +249,7 @@ extension AlbumController:UICollectionViewDelegate,UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AlbumCollectionCell", for: indexPath) as! AlbumCollectionCell
         cell.delgate = self
+        cell.isSingle = self.isSingle
         
         albumResult.library(index: indexPath.row, fetch: current, thumbSize: CGSize(width: itemWidth, height: itemWidth)) { (model) in
             
